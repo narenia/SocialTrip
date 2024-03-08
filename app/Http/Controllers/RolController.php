@@ -54,7 +54,10 @@ class RolController extends Controller
 
         $this->validate($request, ['name' => 'required', 'permission' => 'required']);
         $role = Role::create(['name' => $request->input('name')]);
-        $role->syncPermissions($request->input('permission'));
+        $permissions = $request->input('permission');
+        $permissions = array_map('intval', $permissions);
+        $role->syncPermissions($permissions);
+
         return redirect()->route('roles.index');
     }
 
@@ -70,8 +73,7 @@ class RolController extends Controller
         $role = Role::find($id);
         $permission = Permission::get();
         $rolePermissions = DB::table('role_has_permissions')->where('role_has_permissions.role_id', $id)
-            ->pluck('role_has_permissions.permission.id', 'role_has_permissions.permission_id')->all();
-        //le pasamos lo que sacamos de roles, de permisos, y la relación entre ambos
+            ->pluck('role_has_permissions.permission_id', 'role_has_permissions.permission_id')->all();
         return view('roles.editar', compact('role', 'permission', 'rolePermissions'));
     }
 
@@ -90,8 +92,9 @@ class RolController extends Controller
         $role = Role::find($id);
         $role->name = $request->input('name');
         $role->save();
-        $role->syncPermissions($request->input('permission'));
-
+        $permissions = $request->input('permission');
+        $permissions = array_map('intval', $permissions);
+        $role->syncPermissions($permissions);
         return redirect()->route('roles.index');
     }
 

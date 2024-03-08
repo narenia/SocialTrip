@@ -34,7 +34,6 @@ class BlogController extends Controller
      */
     public function create()
     {
-        //
         return view('blogs.crear');
     }
 
@@ -53,6 +52,7 @@ class BlogController extends Controller
                 'contenido' => 'required'
             ]
         );
+
         Blog::create($request->all());
         return redirect()->route('blogs.index');
     }

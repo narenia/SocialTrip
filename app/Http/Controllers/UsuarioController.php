@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
@@ -32,7 +33,7 @@ class UsuarioController extends Controller
     public function create()
     {
         //
-        Role::pluck('name', 'name')->all();
+        $roles = Role::pluck('name', 'name')->all();
         return view('usuarios.crear', compact('roles'));
     }
 
@@ -87,7 +88,7 @@ class UsuarioController extends Controller
         //
         $this->validate($request, [
             'name' => 'required',
-            'email' => 'required|email|unique:users,email' . $id,
+            'email' => 'required|email|unique:users,email,' . $id,
             'password' => 'same:confirm-password',
             'roles' => 'required'
         ]);

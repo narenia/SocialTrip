@@ -1,3 +1,3 @@
 <div class="footer-left">
-    All rights reserved &copy; {{ date('Y') }}
+   Todos los derechos reservados por Nazaret Guirado Sánchez &copy; {{ date('Y') }}
 </div>
