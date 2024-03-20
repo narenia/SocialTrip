@@ -5,6 +5,9 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\PaisController;
+use App\Http\Controllers\CiudadController;
+use App\Http\Controllers\TransporteController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -30,4 +33,7 @@ Route::group(['middleware' => ['auth']], function(){
     Route::resource('roles', RolController::class);
     Route::resource('usuarios', UsuarioController::class);
     Route::resource('blogs', BlogController::class);
+    Route::resource('paises', PaisController::class);
+    Route::resource('ciudades', CiudadController::class);
+    Route::resource('transportes', TransporteController::class);
 });

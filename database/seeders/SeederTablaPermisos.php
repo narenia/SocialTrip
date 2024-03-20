@@ -27,10 +27,31 @@ class SeederTablaPermisos extends Seeder
             'crear-blog',
             'editar-blog',
             'borrar-blog',
+            //Tabla Paises
+            'ver-pais',
+            'crear-pais',
+            'editar-pais',
+            'borrar-pais',
+            //Tabla Ciudades
+            'ver-ciudad',
+            'crear-ciudad',
+            'editar-ciudad',
+            'borrar-ciudad',
+            //Tabla Transportes
+            'ver-transporte',
+            'crear-transporte',
+            'editar-transporte',
+            'borrar-transporte',
+            //Tabla estados-viaje
+            'ver-estados',
+            'crear-estados',
+            'editar-estados',
+            'borrar-estados',
+
         ];
 
-        foreach($permisos as $permiso){
-            Permission::create(['name'=>$permiso]);
+        foreach ($permisos as $permiso) {
+            Permission::create(['name' => $permiso]);
         }
     }
 }
