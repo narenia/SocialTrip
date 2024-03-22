@@ -3,42 +3,43 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h3 class="page__heading">Posts</h3>
+            <h3 class="page__heading">estados_viaje</h3>
         </div>
         <div class="section-body">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            @can('crear-blog')
-                                <a class="btn btn-warning" href="{{ route('blogs.create') }}">Nuevo</a>
+                            @can('crear-transporte')
+                                <a class="btn btn-warning" href="{{ route('estados_viaje.create') }}">Nuevo</a>
                             @endcan
                             <table class="table table-striped mt-2">
                                 <thead style="background-color: #6777ef";>
                                     <th style="display: none;">ID</th>
-                                    <th style="color:#fff">Título</th>
-                                    <th style="color:#fff">Contenido</th>
-                                    <th style="color:#fff">Acciones</th>
+                                    <th style="color:#fff">Nombre</th>
                                 </thead>
                                 <tbody>
-                                    @foreach ($blogs as $blog)
+                                    @foreach ($estados_viaje as $estado_viaje)
                                         <tr>
-                                            <td style="display:none;">{{ $blog->id }}</td>
-                                            <td>{{ $blog->titulo }}</td>
-                                            <td>{{ $blog->contenido }}</td>
+                                            <td style="display:none;">{{ $estado_viaje->id }}</td>
+                                            <td>{{ $estado_viaje->nombre }}</td>
 
                                             <td>
-                                                <form action="{{ route('blogs.destroy', $blog->id) }}" method="POST">
-                                                    @can('editar-blog')
+                                                <form action="{{ route('estados_viaje.destroy', $estado_viaje->id) }}" method="POST">
+                                                    @can('editar-estado_viaje')
                                                         <a class="btn btn-info"
-                                                            href="{{ route('blogs.edit', $blog->id) }}">Editar</a>
+                                                            href="{{ route('estados_viaje.edit', $estado_viaje->id) }}">Editar</a>
                                                     @endcan
 
                                                     @csrf
                                                     @method('DELETE')
-                                                    @can('borrar-blog')
-                                                    <button type="submit" class="btn btn-danger">Borrar</button>
+                                                    @can('borrar-estado_viaje')
+                                                        <button type="submit" class="btn btn-danger">Borrar</button>
                                                     @endcan
+                                                    @if ($errors->has('delete_error'))
+                                                        <div class="alert alert-danger">{{ $errors->first('delete_error') }}
+                                                        </div>
+                                                    @endif
                                                 </form>
                                             </td>
                                         </tr>
@@ -46,7 +47,7 @@
                                 </tbody>
                             </table>
                         </div class="pagination justify-content-end">
-                        {!! $blogs->links() !!}
+                        {!! $estados_viaje->links() !!}
                     </div>
                 </div>
             </div>

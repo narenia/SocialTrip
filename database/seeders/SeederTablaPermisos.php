@@ -43,10 +43,10 @@ class SeederTablaPermisos extends Seeder
             'editar-transporte',
             'borrar-transporte',
             //Tabla estados-viaje
-            'ver-estados',
-            'crear-estados',
-            'editar-estados',
-            'borrar-estados',
+            'ver-estado_viaje',
+            'crear-estado_viaje',
+            'editar-estado_viaje',
+            'borrar-estado_viaje',
 
         ];
 

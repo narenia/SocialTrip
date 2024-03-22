@@ -59,7 +59,7 @@ class RolController extends Controller
         $role->syncPermissions($permissions);
 
         return redirect()->route('roles.index');
-    }
+    } 
 
 
     /**

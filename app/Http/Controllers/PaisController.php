@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Pais;
+use App\Models\Paises;
 
 class PaisController extends Controller
 {
@@ -14,6 +14,7 @@ class PaisController extends Controller
         $this->middleware('permission:editar-pais', ['only' => ['edit', 'update']]);
         $this->middleware('permission:borrar-pais', ['only' => ['destroy']]);
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -21,8 +22,7 @@ class PaisController extends Controller
      */
     public function index()
     {
-        //
-        $paises = Pais::paginate(5);
+        $paises = Paises::paginate(5);
         return view('paises.index', compact('paises'));
     }
 
@@ -44,23 +44,22 @@ class PaisController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        request()->validate(
-            [
-                'nombre' => 'required'
-            ]
-        );
-        Pais::create($request->all());
+        $request->validate([
+            'nombre' => 'required'
+        ]);
+
+        Paises::create($request->all());
+
         return redirect()->route('paises.index');
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Paises  $pais
      * @return \Illuminate\Http\Response
      */
-    public function edit(Pais $pais)
+    public function edit(Paises $pais)
     {
         return view('paises.editar', compact('pais'));
     }
@@ -69,28 +68,30 @@ class PaisController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Paises  $pais
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pais $pais)
+    public function update(Request $request, Paises $pais)
     {
-        request()->validate([
+        $request->validate([
             'nombre' => 'required'
         ]);
+
         $pais->update($request->all());
+
         return redirect()->route('paises.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Paises  $pais
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pais $pais)
+    public function destroy(Paises $pais)
     {
-        //
         $pais->delete();
+
         return redirect()->route('paises.index');
     }
 }

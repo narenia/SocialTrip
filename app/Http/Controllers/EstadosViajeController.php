@@ -1,18 +1,18 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Ciudades;
-use App\Models\Paises;
-use Illuminate\Http\Request;
 
-class CiudadController extends Controller
+use Illuminate\Http\Request;
+use App\Models\Estados_viaje;
+class EstadosViajeController extends Controller
+
 {
     function __construct()
     {
-        $this->middleware('permission:ver-ciudad|crear-ciudad|editar-ciudad|borrar-ciudad', ['only' => ['index']]);
-        $this->middleware('permission:crear-ciudad', ['only' => ['create', 'store']]);
-        $this->middleware('permission:editar-ciudad', ['only' => ['edit', 'update']]);
-        $this->middleware('permission:borrar-ciudad', ['only' => ['destroy']]);
+        $this->middleware('permission:ver-estado_viaje|crear-estado_viaje|editar-estado_viaje|borrar-estado_viaje', ['only' => ['index']]);
+        $this->middleware('permission:crear-estado_viaje', ['only' => ['create', 'store']]);
+        $this->middleware('permission:editar-estado_viaje', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:borrar-estado_viaje', ['only' => ['destroy']]);
     }
     /**
      * Display a listing of the resource.
@@ -22,8 +22,8 @@ class CiudadController extends Controller
     public function index()
     {
         //
-        $ciudades = Ciudades::paginate(5);
-        return view('ciudades.index', compact('ciudades'));
+        $estados_viaje = Estados_viaje::paginate(5);
+        return view('estados_viaje.index', compact('estados_viaje'));
     }
 
     /**
@@ -33,8 +33,8 @@ class CiudadController extends Controller
      */
     public function create()
     {
-        $paises = Paises::all();
-        return view('ciudades.crear')->with('paises', $paises);
+        $paises = Estados_viaje::all();
+        return view('estados_viaje.crear')->with('paises', $paises);
     }
 
     /**
@@ -53,8 +53,8 @@ class CiudadController extends Controller
             ]
         );
 
-        Ciudades::create($request->all());
-        return redirect()->route('ciudades.index');
+        Estados_viaje::create($request->all());
+        return redirect()->route('estados_viaje.index');
     }
 
     /**
@@ -63,10 +63,10 @@ class CiudadController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Ciudades $ciudad)
+    public function edit(Estados_viaje $estado_viaje)
     {
-        $paises = Paises::all();
-        return view('ciudades.editar', compact('ciudad','paises'));
+        $paises = Estados_viaje::all();
+        return view('estados_viaje.editar', compact('estado_viaje', 'paises'));
     }
 
     /**
@@ -76,14 +76,14 @@ class CiudadController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Ciudades $ciudad)
+    public function update(Request $request, Estados_viaje $estado_viaje)
     {
         request()->validate([
             'nombre' => 'required',
             'pais_id' => 'required'
         ]);
-        $ciudad->update($request->all());
-        return redirect()->route('ciudades.index');
+        $estado_viaje->update($request->all());
+        return redirect()->route('estados_viaje.index');
     }
 
     /**
@@ -92,10 +92,10 @@ class CiudadController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Ciudades $ciudad)
+    public function destroy(Estados_viaje $estado_viaje)
     {
         //
-        $ciudad->delete();
-        return redirect()->route('ciudades.index');
+        $estado_viaje->delete();
+        return redirect()->route('estados_viaje.index');
     }
 }
