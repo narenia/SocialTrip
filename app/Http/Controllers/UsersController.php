@@ -12,7 +12,7 @@ use Illuminate\Support\Arr;
 use OpenSpout\Common\Entity\Row;
 
 
-class UsuarioController extends Controller
+class UsersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,8 +21,8 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        $usuarios = User::paginate(5);
-        return view('usuarios.index', compact('usuarios'));
+        $users = User::paginate(5);
+        return view('users.index', compact('users'));
     }
 
     /**
@@ -34,7 +34,7 @@ class UsuarioController extends Controller
     {
         //
         $roles = Role::pluck('name', 'name')->all();
-        return view('usuarios.crear', compact('roles'));
+        return view('users.crear', compact('roles'));
     }
 
     /**
@@ -57,7 +57,7 @@ class UsuarioController extends Controller
         $input['password'] = Hash::make($input['password']);
         $user = User::create($input);
         $user->assignRole($request->input('roles'));
-        return redirect()->route('usuarios.index');
+        return redirect()->route('users.index');
     }
 
 
@@ -73,7 +73,7 @@ class UsuarioController extends Controller
         $user = User::find($id);
         $roles = Role::pluck('name', 'name')->all();
         $userRole = $user->roles->pluck('name', 'name')->all();
-        return view('usuarios.editar', compact('user', 'roles', 'userRole'));
+        return view('users.editar', compact('user', 'roles', 'userRole'));
     }
 
     /**
@@ -104,7 +104,7 @@ class UsuarioController extends Controller
         $user->update($input);
         DB::table('model_has_roles')->where('model_id',$id)->delete();
         $user->assignRole($request->input('roles'));
-        return redirect()->route('usuarios.index');
+        return redirect()->route('users.index');
     }
 
     /**
@@ -117,6 +117,6 @@ class UsuarioController extends Controller
     {
         //
         User::find($id)->delete();
-        return redirect()->route('usuarios.index');
+        return redirect()->route('users.index');
     }
 }

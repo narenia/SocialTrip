@@ -3,7 +3,7 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h3 class="page__heading">Alta de Usuarios</h3>
+            <h3 class="page__heading">Alta de usuarios del Panel de Control</h3>
         </div>
         <div class="section-body">
             <div class="row">
@@ -23,39 +23,91 @@
                                 </div>
                             @endif
 
-                            {!! Form::model($user, ['method' => 'PATCH', 'route' => ['usuarios.update', $user->id]]) !!}
+                            {!! Form::model($usuario, ['method' => 'PATCH', 'route' => ['usuarios.update', $usuario->id]]) !!}
                             <div class="row">
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
-                                        <label for="name">Nombre</label>
-                                        {!! Form::text('name', null, array('class' => 'form-control')) !!}
+                                        <label for="nombre_usuario">Nombre de usuario</label>
+                                        {!! Form::text('nombre_usuario', null, ['class' => 'form-control']) !!}
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
-                                        <label for="email">Email</label>
-                                        {!! Form::text('email', null, array('class' => 'form-control')) !!}
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-12 col-md-12">
-                                    <div class="form-group">
-                                        <label for="password">Contraseña</label>
-                                        {!! Form::password('password', array('class' => 'form-control')) !!}
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-12 col-md-12">
-                                    <div class="form-group">
-                                        <label for="confirm-password">Confirmar contraseña</label>
-                                        {!! Form::password('confirm-password', array('class' => 'form-control')) !!}
+                                        <label for="nombre">Nombre</label>
+                                        {!! Form::text('nombre', null, ['class' => 'form-control']) !!}
                                     </div>
                                 </div>
 
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
-                                        <label for="">Roles</label>
-                                        {!! Form::select('roles[]', $roles, [], array('class' => 'form-control')) !!}
+                                        <label for="apellidos">Apellidos</label>
+                                        {!! Form::text('apellidos', null, ['class' => 'form-control']) !!}
                                     </div>
                                 </div>
+
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                        <label for="email">Email</label>
+                                        {!! Form::text('email', null, ['class' => 'form-control']) !!}
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                        <label for="dni">DNI</label>
+                                        {!! Form::text('dni', null, ['class' => 'form-control']) !!}
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                        <label for="ciudad_residencia">Ciudad de Residencia</label>
+                                        {!! Form::text('ciudad_residencia', null, ['class' => 'form-control']) !!}
+                                    </div>
+                                </div>
+                                {{-- <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                        <label for="ciudad_nacimiento">Ciudad de Nacimiento</label>
+                                        {!! Form::text('ciudad_nacimiento', null, ['class' => 'form-control']) !!}
+                                    </div>
+                                </div> --}}
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                        <label for="fecha_nacimiento">Fecha de Nacimiento</label>
+                                        {!! Form::date('fecha_nacimiento', null, ['class' => 'form-control']) !!}
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                        <label for="contrasenna">Contraseña</label>
+                                        {!! Form::password('contrasenna', ['class' => 'form-control']) !!}
+                                    </div>
+                                </div>
+
+
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                        <label for="ciudad_nacimiento">Ciudad de Nacimiento</label>
+                                        <select name="ciudad_nacimiento" class="form-control">
+                                            @foreach ($ciudades as $ciudad)
+                                                <option value="{{ $ciudad->id }}" {{ $usuario->ciudad_nacimiento == $ciudad->id ? 'selected' : '' }}>{{ $ciudad->nombre }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                        <label for="ciudad_residencia">Ciudad de residencia</label>
+                                        <select name="ciudad_residencia" class="form-control">
+                                            @foreach ($ciudades as $ciudad)
+                                                <option value="{{ $ciudad->id }}" {{ $usuario->ciudad_residencia == $ciudad->id ? 'selected' : '' }}>
+                                                    {{ $ciudad->nombre }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+
                                 <button type="submit" class="btn btn-primary">Guardar</button>
                             </div>
                             {!! Form::close() !!}

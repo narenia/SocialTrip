@@ -33,8 +33,7 @@ class EstadosViajeController extends Controller
      */
     public function create()
     {
-        $paises = Estados_viaje::all();
-        return view('estados_viaje.crear')->with('paises', $paises);
+        return view('estados_viaje.crear');
     }
 
     /**
@@ -48,8 +47,7 @@ class EstadosViajeController extends Controller
         //
         request()->validate(
             [
-                'nombre' => 'required',
-                'pais_id' => 'required'
+                'nombre' => 'required'
             ]
         );
 
@@ -65,9 +63,9 @@ class EstadosViajeController extends Controller
      */
     public function edit(Estados_viaje $estado_viaje)
     {
-        $paises = Estados_viaje::all();
-        return view('estados_viaje.editar', compact('estado_viaje', 'paises'));
+        return view('estados_viaje.editar', compact('estado_viaje'));
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -79,8 +77,7 @@ class EstadosViajeController extends Controller
     public function update(Request $request, Estados_viaje $estado_viaje)
     {
         request()->validate([
-            'nombre' => 'required',
-            'pais_id' => 'required'
+            'nombre' => 'required'
         ]);
         $estado_viaje->update($request->all());
         return redirect()->route('estados_viaje.index');

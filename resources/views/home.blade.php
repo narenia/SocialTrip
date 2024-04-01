@@ -15,13 +15,13 @@
 
                                     <div class="card bg-c-blue order-card">
                                             <div class="card-block">
-                                            <h5>Usuarios</h5>
+                                            <h5>Usuarios con acceso al Panel</h5>
                                                 @php
                                                  use App\Models\User;
                                                 $cant_usuarios = User::count();
                                                 @endphp
                                                 <h2 class="text-right"><i class="fa fa-users f-left"></i><span>{{$cant_usuarios}}</span></h2>
-                                                <p class="m-b-0 text-right"><a href="/usuarios" class="text-white">Ver más</a></p>
+                                                <p class="m-b-0 text-right"><a href="/users" class="text-white">Ver más</a></p>
                                             </div>
                                         </div>
                                     </div>
@@ -51,6 +51,20 @@
                                                 <h2 class="text-right"><i class="fas fa-solid fa-globe f-left"></i><span>{{$cant_paises}}</span></h2>
                                                 <p class="m-b-0 text-right"><a href="/paises" class="text-white">Ver más</a></p>
                                             </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4 col-xl-4">
+                                    <div class="card bg-c-blue order-card">
+                                        <div class="card-block">
+                                        <h5>Ciudades</h5>
+                                            @php
+                                             use App\Models\Ciudades;
+                                                $cant_ciudades = Ciudades::count();
+                                            @endphp
+                                            <h2 class="text-right"><i class="fas fa-solid fa-city f-left"></i><span>{{$cant_ciudades}}</span></h2>
+                                            <p class="m-b-0 text-right"><a href="/roles" class="text-white">Ver más</a></p>
                                         </div>
                                     </div>
                                 </div>
