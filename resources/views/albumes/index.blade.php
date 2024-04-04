@@ -3,37 +3,39 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h3 class="page__heading">Paises</h3>
+            <h3 class="page__heading">Álbumes</h3>
         </div>
         <div class="section-body">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            @can('crear-pais')
-                                <a class="btn btn-warning" href="{{ route('paises.create') }}">Crear</a>
+                            @can('crear-album')
+                                <a class="btn btn-warning" href="{{ route('albumes.create') }}">Crear</a>
                             @endcan
                             <table class="table table-striped mt-2">
                                 <thead style="background-color: #6777ef";>
                                     <th style="display: none;">ID</th>
                                     <th style="color:#fff">Nombre</th>
+                                    <th style="color:#fff">Usuario</th>
                                 </thead>
                                 <tbody>
-                                    @foreach ($paises as $pais)
+                                    @foreach ($albumes as $album)
                                         <tr>
-                                            <td style="display:none;">{{ $pais->id }}</td>
-                                            <td>{{ $pais->nombre }}</td>
+                                            <td style="display:none;">{{ $album->id }}</td>
+                                            <td>{{ $album->nombre }}</td>
+                                            <td>{{ $album->usuarioId->nombre }}</td>
 
                                             <td>
-                                                <form action="{{ route('paises.destroy', $pais->id) }}" method="POST">
-                                                    @can('editar-pais')
+                                                <form action="{{ route('albumes.destroy', $album->id) }}" method="POST">
+                                                    @can('editar-album')
                                                         <a class="btn btn-info"
-                                                            href="{{ route('paises.edit', $pais->id) }}">Editar</a>
+                                                            href="{{ route('albumes.edit', $album->id) }}">Editar</a>
                                                     @endcan
 
                                                     @csrf
                                                     @method('DELETE')
-                                                    @can('borrar-pais')
+                                                    @can('borrar-album')
                                                         <button type="submit" class="btn btn-danger">Borrar</button>
                                                     @endcan
                                                     @if ($errors->has('delete_error'))
@@ -47,7 +49,7 @@
                                 </tbody>
                             </table>
                         </div class="pagination justify-content-end">
-                        {!! $paises->links() !!}
+                        {!! $albumes->links() !!}
                     </div>
                 </div>
             </div>

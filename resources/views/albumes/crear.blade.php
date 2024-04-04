@@ -3,7 +3,7 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h3 class="page__heading">Crear notificación</h3>
+            <h3 class="page__heading">Crear Álbum</h3>
         </div>
         <div class="section-body">
             <div class="row">
@@ -23,9 +23,15 @@
                                     </button>
                                 </div>
                             @endif
-                            <form action="{{ route('notificaciones.store') }}" method="POST">
+                            <form action="{{ route('albumes.store') }}" method="POST">
                                 @csrf
 
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                        <label for="nombre">Nombre</label>
+                                        <input type="text" name="nombre" class="form-control">
+                                    </div>
+                                </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="form-group">
                                             <label for="usuario_id">Usuario</label>
@@ -36,32 +42,8 @@
                                             </select>
                                         </div>
                                     </div>
-                                        <div class="col-xs-12 col-sm-12 col-md-12">
-                                            <div class="form-group">
-                                                <label for="tipo">Tipo</label>
-                                                <input type="text" name="tipo" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-12 col-sm-12 col-md-12">
-                                            <div class="form-group">
-                                                <label for="estado">Estado</label>
-                                                <input type="text" name="estado" class="form-control">
-                                            </div>
-                                        </div>
 
-                                        <div class="col-xs-12 col-sm-12 col-md-12">
-                                            <div class="form-group">
-                                                <label for="fecha">Fecha</label>
-                                                <input type="date" name="fecha" class="form-control">
-                                            </div>
-                                        </div>
 
-                                        <div class="col-xs-12 col-sm-12 col-md-12">
-                                            <div class="form-group">
-                                                <label for="contenido">Contenido</label>
-                                                <input type="text" name="contenido" class="form-control">
-                                            </div>
-                                        </div>
                                         <div class="col-xs-12 col-sm-12 col-md-12">
 
                                             <button type="submit" class="btn btn-primary">Guardar</button>

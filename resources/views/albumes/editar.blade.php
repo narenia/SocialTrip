@@ -3,7 +3,7 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h3 class="page__heading">Editar notificación</h3>
+            <h3 class="page__heading">Editar álbum</h3>
         </div>
         <div class="section-body">
             <div class="row">
@@ -23,50 +23,27 @@
                                 </div>
                             @endif
 
-                            <form action="{{ route('notificaciones.update', $notificacion->id) }}" method="POST">
+                            <form action="{{ route('albumes.update', $album->id) }}" method="POST">
                                 @csrf
                                 @method('PUT')
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                        <label for="nombre">Nombre</label>
+                                        <input type="text" name="nombre" class="form-control" value="{{ $album->nombre }}">
+                                    </div>
+                                </div>
+
+
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <label for="usuario_id">Usuario</label>
                                         <select name="usuario_id" class="form-control">
                                             @foreach ($usuarios as $usuario)
-                                                <option value="{{ $usuario->id }}" {{ $usuario->id == $notificacion->usuario_id ? 'selected' : '' }}>
+                                                <option value="{{ $usuario->id }}" {{ $usuario->id == $album->usuario_id ? 'selected' : '' }}>
                                             {{ $usuario->nombre }}
                                                 </option>
                                             @endforeach
                                         </select>
-                                    </div>
-                                </div>
-
-                                <div class="col-xs-12 col-sm-12 col-md-12">
-                                    <div class="form-group">
-                                        <label for="tipo">Tipo</label>
-                                        <input type="text" name="tipo" class="form-control"
-                                            value="{{ $notificacion->tipo }}">
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-12 col-md-12">
-                                    <div class="form-group">
-                                        <label for="estado">Estado</label>
-                                        <input type="text" name="estado" class="form-control"
-                                            value="{{ $notificacion->estado }}">
-                                    </div>
-                                </div>
-
-                                <div class="col-xs-12 col-sm-12 col-md-12">
-                                    <div class="form-group">
-                                        <label for="fecha">Fecha</label>
-                                        <input type="date" name="fecha" class="form-control"
-                                            value="{{ $notificacion->fecha }}">
-                                    </div>
-                                </div>
-
-                                <div class="col-xs-12 col-sm-12 col-md-12">
-                                    <div class="form-group">
-                                        <label for="contenido">Contenido</label>
-                                        <input type="text" name="contenido" class="form-control"
-                                            value="{{ $notificacion->contenido }}">
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">

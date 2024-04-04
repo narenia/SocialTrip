@@ -10,64 +10,71 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-4 col-xl-4">
+                            <div class="row">
+
+                                <div class="col-md-4 col-xl-4">
 
                                     <div class="card bg-c-blue order-card">
-                                            <div class="card-block">
+                                        <div class="card-block">
                                             <h5>Usuarios con acceso al Panel</h5>
-                                                @php
-                                                 use App\Models\User;
+                                            @php
+                                                use App\Models\User;
                                                 $cant_usuarios = User::count();
-                                                @endphp
-                                                <h2 class="text-right"><i class="fa fa-users f-left"></i><span>{{$cant_usuarios}}</span></h2>
-                                                <p class="m-b-0 text-right"><a href="/users" class="text-white">Ver más</a></p>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-4 col-xl-4">
-                                        <div class="card bg-c-green order-card">
-                                            <div class="card-block">
-                                            <h5>Roles</h5>
-                                                @php
-                                                use Spatie\Permission\Models\Role;
-                                                 $cant_roles = Role::count();
-                                                @endphp
-                                                <h2 class="text-right"><i class="fa fa-user-lock f-left"></i><span>{{$cant_roles}}</span></h2>
-                                                <p class="m-b-0 text-right"><a href="/roles" class="text-white">Ver más</a></p>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-4 col-xl-4">
-                                        <div class="card bg-c-pink order-card">
-                                            <div class="card-block">
-                                                <h5>Paises</h5>
-                                                @php
-                                                 use App\Models\Paises;
-                                                $cant_paises = Paises::count();
-                                                @endphp
-                                                <h2 class="text-right"><i class="fas fa-solid fa-globe f-left"></i><span>{{$cant_paises}}</span></h2>
-                                                <p class="m-b-0 text-right"><a href="/paises" class="text-white">Ver más</a></p>
-                                            </div>
+                                            @endphp
+                                            <h2 class="text-right"><i
+                                                    class="fa fa-users f-left"></i><span>{{ $cant_usuarios }}</span></h2>
+                                            <p class="m-b-0 text-right"><a href="/users" class="text-white">Ver más</a></p>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="col-md-4 col-xl-4">
-                                    <div class="card bg-c-blue order-card">
+                                    <div class="card bg-c-green order-card">
                                         <div class="card-block">
-                                        <h5>Ciudades</h5>
+                                            <h5>Roles</h5>
                                             @php
-                                             use App\Models\Ciudades;
-                                                $cant_ciudades = Ciudades::count();
+                                                use Spatie\Permission\Models\Role;
+                                                $cant_roles = Role::count();
                                             @endphp
-                                            <h2 class="text-right"><i class="fas fa-solid fa-city f-left"></i><span>{{$cant_ciudades}}</span></h2>
+                                            <h2 class="text-right"><i
+                                                    class="fa fa-user-lock f-left"></i><span>{{ $cant_roles }}</span></h2>
                                             <p class="m-b-0 text-right"><a href="/roles" class="text-white">Ver más</a></p>
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="col-md-4 col-xl-4">
+                                    <div class="card bg-c-pink order-card">
+                                        <div class="card-block">
+                                            <h5>Paises</h5>
+                                            @php
+                                                use App\Models\Paises;
+                                                $cant_paises = Paises::count();
+                                            @endphp
+                                            <h2 class="text-right"><i
+                                                    class="fas fa-solid fa-globe f-left"></i><span>{{ $cant_paises }}</span>
+                                            </h2>
+                                            <p class="m-b-0 text-right"><a href="/paises" class="text-white">Ver más</a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {{-- <div class="col-md-4 col-xl-4">
+                                <div class="card bg-c-blue order-card">
+                                    <div class="card-block">
+                                        <h5>Ciudades</h5>
+                                        @php
+                                            use App\Models\Ciudades;
+                                            $cant_ciudades = Ciudades::count();
+                                        @endphp
+                                        <h2 class="text-right"><i
+                                                class="fas fa-solid fa-city f-left"></i><span>{{ $cant_ciudades }}</span>
+                                        </h2>
+                                        <p class="m-b-0 text-right"><a href="/roles" class="text-white">Ver más</a></p>
+                                    </div>
+                                </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>

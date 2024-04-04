@@ -11,7 +11,7 @@
                     <div class="card">
                         <div class="card-body">
                             @can('crear-transporte')
-                                <a class="btn btn-warning" href="{{ route('transportes.create') }}">Nuevo</a>
+                                <a class="btn btn-warning" href="{{ route('transportes.create') }}">Crear</a>
                             @endcan
                             <table class="table table-striped mt-2">
                                 <thead style="background-color: #6777ef";>

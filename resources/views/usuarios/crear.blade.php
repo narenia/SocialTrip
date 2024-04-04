@@ -58,18 +58,30 @@
                                         {!! Form::text('dni', null, array('class' => 'form-control')) !!}
                                     </div>
                                 </div>
+
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
-                                        <label for="ciudad_residencia">Ciudad de Residencia</label>
-                                        {!! Form::text('ciudad_residencia', null, array('class' => 'form-control')) !!}
+                                        <label for="ciudad_residencia">Ciudad de residencia</label>
+                                        <select name="ciudad_residencia" class="form-control">
+                                            @foreach ($ciudades as $ciudad)
+                                                <option value="{{ $ciudad->id }}">
+                                                    {{ $ciudad->nombre }}
+                                                </option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <label for="ciudad_nacimiento">Ciudad de Nacimiento</label>
-                                        {!! Form::text('ciudad_nacimiento', null, array('class' => 'form-control')) !!}
+                                        <select name="ciudad_nacimiento" class="form-control">
+                                            @foreach ($ciudades as $ciudad)
+                                                <option value="{{ $ciudad->id }}" >{{ $ciudad->nombre }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
+
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <label for="fecha_nacimiento">Fecha de Nacimiento</label>

@@ -11,6 +11,11 @@ use App\Http\Controllers\EstadosViajeController;
 use App\Http\Controllers\TransporteController;
 use App\Http\Controllers\ValoracionController;
 use App\Http\Controllers\NotificacionController;
+use App\Http\Controllers\AlbumController;
+use App\Http\Controllers\ComentarioController;
+use App\Http\Controllers\ViajeController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\ImagenController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -78,4 +83,39 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('notificaciones/{notificacion}/edit', [NotificacionController::class, 'edit'])->name('notificaciones.edit');
     Route::put('notificaciones/{notificacion}', [NotificacionController::class, 'update'])->name('notificaciones.update');
     Route::delete('notificaciones/{notificacion}', [NotificacionController::class, 'destroy'])->name('notificaciones.destroy');
+    // Rutas específicas para el controlador Albumes
+    Route::get('albumes', [AlbumController::class, 'index'])->name('albumes.index');
+    Route::get('albumes/create', [AlbumController::class, 'create'])->name('albumes.create');
+    Route::post('albumes', [AlbumController::class, 'store'])->name('albumes.store');
+    Route::get('albumes/{album}/edit', [AlbumController::class, 'edit'])->name('albumes.edit');
+    Route::put('albumes/{album}', [AlbumController::class, 'update'])->name('albumes.update');
+    Route::delete('albumes/{album}', [AlbumController::class, 'destroy'])->name('albumes.destroy');
+    // Rutas específicas para el controlador Viajes
+    Route::get('viajes', [ViajeController::class, 'index'])->name('viajes.index');
+    Route::get('viajes/create', [ViajeController::class, 'create'])->name('viajes.create');
+    Route::post('viajes', [ViajeController::class, 'store'])->name('viajes.store');
+    Route::get('viajes/{viaje}/edit', [ViajeController::class, 'edit'])->name('viajes.edit');
+    Route::put('viajes/{viaje}', [ViajeController::class, 'update'])->name('viajes.update');
+    Route::delete('viajes/{viaje}', [ViajeController::class, 'destroy'])->name('viajes.destroy');
+    // Rutas específicas para el controlador Posts
+    Route::get('posts', [PostController::class, 'index'])->name('posts.index');
+    Route::get('posts/create', [PostController::class, 'create'])->name('posts.create');
+    Route::post('posts', [PostController::class, 'store'])->name('posts.store');
+    Route::get('posts/{post}/edit', [PostController::class, 'edit'])->name('posts.edit');
+    Route::put('posts/{post}', [PostController::class, 'update'])->name('posts.update');
+    Route::delete('posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
+    // Rutas específicas para el controlador Comentarios
+    Route::get('comentarios', [ComentarioController::class, 'index'])->name('comentarios.index');
+    Route::get('comentarios/create', [ComentarioController::class, 'create'])->name('comentarios.create');
+    Route::post('comentarios', [ComentarioController::class, 'store'])->name('comentarios.store');
+    Route::get('comentarios/{comentario}/edit', [ComentarioController::class, 'edit'])->name('comentarios.edit');
+    Route::put('comentarios/{comentario}', [ComentarioController::class, 'update'])->name('comentarios.update');
+    Route::delete('comentarios/{comentario}', [ComentarioController::class, 'destroy'])->name('comentarios.destroy');
+    // Rutas específicas para el controlador Imagenes
+    Route::get('imagenes', [ImagenController::class, 'index'])->name('imagenes.index');
+    Route::get('imagenes/create', [ImagenController::class, 'create'])->name('imagenes.create');
+    Route::post('imagenes', [ImagenController::class, 'store'])->name('imagenes.store');
+    Route::get('imagenes/{imagen}/edit', [ImagenController::class, 'edit'])->name('imagenes.edit');
+    Route::put('imagenes/{imagen}', [ImagenController::class, 'update'])->name('imagenes.update');
+    Route::delete('imagenes/{imagen}', [ImagenController::class, 'destroy'])->name('imagenes.destroy');
 });

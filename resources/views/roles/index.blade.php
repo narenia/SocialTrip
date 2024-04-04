@@ -11,7 +11,7 @@
                     <div class="card">
                         <div class="card-body">
                             @can('crear-rol')
-                                <a class="btn btn-warning" href="{{ route('roles.create') }}">Nuevo Rol</a>
+                                <a class="btn btn-warning" href="{{ route('roles.create') }}">Crear</a>
                             @endcan
                             <table class="table table-striped mt-2">
                                 <thead style="background-color: #6777ef";>

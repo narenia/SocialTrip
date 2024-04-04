@@ -3,54 +3,53 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h3 class="page__heading">Notificaciones</h3>
+            <h3 class="page__heading">Posts</h3>
         </div>
         <div class="section-body">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            @can('crear-notificacion')
-                                <a class="btn btn-warning" href="{{ route('notificaciones.create') }}">Crear</a>
+                            @can('crear-post')
+                                <a class="btn btn-warning" href="{{ route('posts.create') }}">Crear</a>
                             @endcan
                             <table class="table table-striped mt-2">
                                 <thead style="background-color: #6777ef";>
                                     <th style="display: none;">ID</th>
                                     <th style="color:#fff">Usuario</th>
-                                    <th style="color:#fff">Tipo</th>
-                                    <th style="color:#fff">Estado</th>
-                                    <th style="color:#fff">Fecha</th>
+                                    <th style="color:#fff">Viaje</th>
+                                    <th style="color:#fff">Titulo</th>
                                     <th style="color:#fff">Contenido</th>
-                                    <th style="color:#fff">Acciones</th>
+                                    <th style="color:#fff">Fecha de publicacion</th>
+                                    <th style="color:#fff">Fecha de modificacion</th>
+
 
                                 </thead>
                                 <tbody>
-                                    @foreach ($notificaciones as $notificacion)
+                                    @foreach ($posts as $post)
                                         <tr>
-                                            <td style="display:none;">{{ $notificacion->id }}</td>
-                                            {{-- <td>{{ $notificacion->usuario_id }}</td> --}}
-                                            <td>{{ $notificacion->usuarioId->nombre }}</td>
-                                            <td>{{ $notificacion->tipo }}</td>
-                                            <td>{{ $notificacion->estado }}</td>
-                                            <td>{{ $notificacion->fecha }}</td>
-                                            <td>{{ $notificacion->contenido }}</td>
-
-
+                                            <td style="display:none;">{{ $post->id }}</td>
+                                            <td>{{ $post->usuarioId->nombre }}</td>
+                                            <td>{{ $post->viajeId->id }}</td>
+                                            <td>{{ $post->titulo }}</td>
+                                            <td>{{ $post->contenido }}</td>
+                                            <td>{{ $post->created_at }}</td>
+                                            <td>{{ $post->updated_at }}</td>
                                             <td>
-                                                <form action="{{ route('notificaciones.destroy', $notificacion->id) }}"
-                                                    method="POST">
-                                                    @can('editar-notificacion')
+                                                <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
+                                                    @can('editar-post')
                                                         <a class="btn btn-info"
-                                                            href="{{ route('notificaciones.edit', $notificacion->id) }}">Editar</a>
+                                                            href="{{ route('posts.edit', $post->id) }}">Editar</a>
                                                     @endcan
 
                                                     @csrf
                                                     @method('DELETE')
-                                                    @can('borrar-notificacion')
+                                                    @can('borrar-post')
                                                         <button type="submit" class="btn btn-danger">Borrar</button>
                                                     @endcan
                                                     @if ($errors->has('delete_error'))
-                                                        <div class="alert alert-danger">{{ $errors->first('delete_error') }}
+                                                        <div class="alert alert-danger">
+                                                            {{ $errors->first('delete_error') }}
                                                         </div>
                                                     @endif
                                                 </form>
@@ -60,7 +59,7 @@
                                 </tbody>
                             </table>
                         </div class="pagination justify-content-end">
-                        {!! $notificaciones->links() !!}
+                        {!! $posts->links() !!}
                     </div>
                 </div>
             </div>

@@ -3,37 +3,44 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h3 class="page__heading">Paises</h3>
+            <h3 class="page__heading">Comentarios</h3>
         </div>
         <div class="section-body">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            @can('crear-pais')
-                                <a class="btn btn-warning" href="{{ route('paises.create') }}">Crear</a>
+                            @can('crear-comentario')
+                                <a class="btn btn-warning" href="{{ route('comentarios.create') }}">Crear</a>
                             @endcan
                             <table class="table table-striped mt-2">
                                 <thead style="background-color: #6777ef";>
                                     <th style="display: none;">ID</th>
-                                    <th style="color:#fff">Nombre</th>
+                                    <th style="color:#fff">Usuario</th>
+                                    <th style="color:#fff">Post</th>
+                                    <th style="color:#fff">Contenido</th>
+                                    <th style="color:#fff">Fecha de publicación</th>
                                 </thead>
                                 <tbody>
-                                    @foreach ($paises as $pais)
+                                    @foreach ($comentarios as $comentario)
                                         <tr>
-                                            <td style="display:none;">{{ $pais->id }}</td>
-                                            <td>{{ $pais->nombre }}</td>
+                                            <td style="display:none;">{{ $comentario->id }}</td>
+                                            <td>{{ $comentario->usuarioId->nombre }}</td>
+                                            <td>{{ $comentario->postId->titulo}}</td>
+                                            <td>{{ $comentario->contenido }}</td>
+                                            <td>{{ $comentario->created_at }}</td>
 
                                             <td>
-                                                <form action="{{ route('paises.destroy', $pais->id) }}" method="POST">
-                                                    @can('editar-pais')
+                                                <form action="{{ route('comentarios.destroy', $comentario->id) }}"
+                                                    method="POST">
+                                                    @can('editar-comentario')
                                                         <a class="btn btn-info"
-                                                            href="{{ route('paises.edit', $pais->id) }}">Editar</a>
+                                                            href="{{ route('comentarios.edit', $comentario->id) }}">Editar</a>
                                                     @endcan
 
                                                     @csrf
                                                     @method('DELETE')
-                                                    @can('borrar-pais')
+                                                    @can('borrar-comentario')
                                                         <button type="submit" class="btn btn-danger">Borrar</button>
                                                     @endcan
                                                     @if ($errors->has('delete_error'))
@@ -47,7 +54,7 @@
                                 </tbody>
                             </table>
                         </div class="pagination justify-content-end">
-                        {!! $paises->links() !!}
+                        {!! $comentarios->links() !!}
                     </div>
                 </div>
             </div>

@@ -10,8 +10,8 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            @can('crear-transporte')
-                                <a class="btn btn-warning" href="{{ route('estados_viaje.create') }}">Nuevo</a>
+                            @can('crear-estado_viaje')
+                                <a class="btn btn-warning" href="{{ route('estados_viaje.create') }}">Crear</a>
                             @endcan
                             <table class="table table-striped mt-2">
                                 <thead style="background-color: #6777ef";>

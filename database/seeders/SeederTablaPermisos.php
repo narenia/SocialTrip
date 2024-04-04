@@ -22,11 +22,6 @@ class SeederTablaPermisos extends Seeder
             'crear-rol',
             'editar-rol',
             'borrar-rol',
-            //Tabla Blogs
-            'ver-blog',
-            'crear-blog',
-            'editar-blog',
-            'borrar-blog',
             //Tabla Paises
             'ver-pais',
             'crear-pais',
@@ -47,7 +42,51 @@ class SeederTablaPermisos extends Seeder
             'crear-estado_viaje',
             'editar-estado_viaje',
             'borrar-estado_viaje',
-
+            //Tabla Notificaciones
+            'ver-notificacion',
+            'crear-notificacion',
+            'editar-notificacion',
+            'borrar-notificacion',
+            //Tabla Albumes
+            'ver-album',
+            'crear-album',
+            'editar-album',
+            'borrar-album',
+            //Tabla Viajes
+            'ver-viaje',
+            'crear-viaje',
+            'editar-viaje',
+            'borrar-viaje',
+            //Tabla Usuarios
+            'ver-usuario',
+            'crear-usuario',
+            'editar-usuario',
+            'borrar-usuario',
+            //Tabla Users
+            'ver-user',
+            'crear-user',
+            'editar-user',
+            'borrar-user',
+            //Tabla Valoraciones
+            'ver-valoracion',
+            'crear-valoracion',
+            'editar-valoracion',
+            'borrar-valoracion',
+            //Tabla Posts
+            'ver-post',
+            'crear-post',
+            'editar-post',
+            'borrar-post',
+            //Tabla Comentarios
+            'ver-comentario',
+            'crear-comentario',
+            'editar-comentario',
+            'borrar-comentario',
+            //Tabla Imagenes
+            'ver-imagen',
+            'crear-imagen',
+            'editar-imagen',
+            'borrar-imagen',
         ];
 
         foreach ($permisos as $permiso) {

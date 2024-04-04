@@ -3,50 +3,54 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h3 class="page__heading">Notificaciones</h3>
+            <h3 class="page__heading">Viajes</h3>
         </div>
         <div class="section-body">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            @can('crear-notificacion')
-                                <a class="btn btn-warning" href="{{ route('notificaciones.create') }}">Crear</a>
+                            @can('crear-viaje')
+                                <a class="btn btn-warning" href="{{ route('viajes.create') }}">Crear</a>
                             @endcan
                             <table class="table table-striped mt-2">
                                 <thead style="background-color: #6777ef";>
                                     <th style="display: none;">ID</th>
                                     <th style="color:#fff">Usuario</th>
-                                    <th style="color:#fff">Tipo</th>
-                                    <th style="color:#fff">Estado</th>
-                                    <th style="color:#fff">Fecha</th>
-                                    <th style="color:#fff">Contenido</th>
-                                    <th style="color:#fff">Acciones</th>
+                                    <th style="color:#fff">Fecha Inicio</th>
+                                    <th style="color:#fff">Fecha Final</th>
+                                    <th style="color:#fff">Transporte</th>
+                                    <th style="color:#fff">Ciudad salida</th>
+                                    <th style="color:#fff">Ciudad destino</th>
+                                    <th style="color:#fff">Estado viaje</th>
+                                    <th style="color:#fff">Recomendado</th>
 
                                 </thead>
                                 <tbody>
-                                    @foreach ($notificaciones as $notificacion)
+                                    @foreach ($viajes as $viaje)
                                         <tr>
-                                            <td style="display:none;">{{ $notificacion->id }}</td>
-                                            {{-- <td>{{ $notificacion->usuario_id }}</td> --}}
-                                            <td>{{ $notificacion->usuarioId->nombre }}</td>
-                                            <td>{{ $notificacion->tipo }}</td>
-                                            <td>{{ $notificacion->estado }}</td>
-                                            <td>{{ $notificacion->fecha }}</td>
-                                            <td>{{ $notificacion->contenido }}</td>
+                                            <td style="display:none;">{{ $viaje->id }}</td>
+                                            <td>{{ $viaje->usuarioId->nombre }}</td>
+                                            <td>{{ $viaje->fecha_inicio }}</td>
+                                            <td>{{ $viaje->fecha_final }}</td>
+                                            <td>{{ $viaje->transporteId->nombre }}</td>
+                                            <td>{{ $viaje->ciudadSalidaId->nombre }}</td>
+                                            <td>{{ $viaje->ciudadDestinoId->nombre }}</td>
+                                            <td>{{ $viaje->estadoViajeId->nombre }}</td>
+                                            <td>{{ $viaje->recomendado }}</td>
 
 
                                             <td>
-                                                <form action="{{ route('notificaciones.destroy', $notificacion->id) }}"
+                                                <form action="{{ route('viajes.destroy', $viaje->id) }}"
                                                     method="POST">
-                                                    @can('editar-notificacion')
+                                                    @can('editar-viaje')
                                                         <a class="btn btn-info"
-                                                            href="{{ route('notificaciones.edit', $notificacion->id) }}">Editar</a>
+                                                            href="{{ route('viajes.edit', $viaje->id) }}">Editar</a>
                                                     @endcan
 
                                                     @csrf
                                                     @method('DELETE')
-                                                    @can('borrar-notificacion')
+                                                    @can('borrar-viaje')
                                                         <button type="submit" class="btn btn-danger">Borrar</button>
                                                     @endcan
                                                     @if ($errors->has('delete_error'))
@@ -60,7 +64,7 @@
                                 </tbody>
                             </table>
                         </div class="pagination justify-content-end">
-                        {!! $notificaciones->links() !!}
+                        {!! $viajes->links() !!}
                     </div>
                 </div>
             </div>

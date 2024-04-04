@@ -58,18 +58,8 @@
                                         {!! Form::text('dni', null, ['class' => 'form-control']) !!}
                                     </div>
                                 </div>
-                                <div class="col-xs-12 col-sm-12 col-md-12">
-                                    <div class="form-group">
-                                        <label for="ciudad_residencia">Ciudad de Residencia</label>
-                                        {!! Form::text('ciudad_residencia', null, ['class' => 'form-control']) !!}
-                                    </div>
+
                                 </div>
-                                {{-- <div class="col-xs-12 col-sm-12 col-md-12">
-                                    <div class="form-group">
-                                        <label for="ciudad_nacimiento">Ciudad de Nacimiento</label>
-                                        {!! Form::text('ciudad_nacimiento', null, ['class' => 'form-control']) !!}
-                                    </div>
-                                </div> --}}
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <label for="fecha_nacimiento">Fecha de Nacimiento</label>
@@ -82,19 +72,7 @@
                                         {!! Form::password('contrasenna', ['class' => 'form-control']) !!}
                                     </div>
                                 </div>
-
-
-                                <div class="col-xs-12 col-sm-12 col-md-12">
-                                    <div class="form-group">
-                                        <label for="ciudad_nacimiento">Ciudad de Nacimiento</label>
-                                        <select name="ciudad_nacimiento" class="form-control">
-                                            @foreach ($ciudades as $ciudad)
-                                                <option value="{{ $ciudad->id }}" {{ $usuario->ciudad_nacimiento == $ciudad->id ? 'selected' : '' }}>{{ $ciudad->nombre }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-
+                                
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <label for="ciudad_residencia">Ciudad de residencia</label>
@@ -107,6 +85,19 @@
                                         </select>
                                     </div>
                                 </div>
+
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                        <label for="ciudad_nacimiento">Ciudad de Nacimiento</label>
+                                        <select name="ciudad_nacimiento" class="form-control">
+                                            @foreach ($ciudades as $ciudad)
+                                                <option value="{{ $ciudad->id }}" {{ $usuario->ciudad_nacimiento == $ciudad->id ? 'selected' : '' }}>{{ $ciudad->nombre }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+
+
 
                                 <button type="submit" class="btn btn-primary">Guardar</button>
                             </div>

@@ -3,7 +3,7 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h3 class="page__heading">Crear notificación</h3>
+            <h3 class="page__heading">Crear valoración</h3>
         </div>
         <div class="section-body">
             <div class="row">
@@ -23,45 +23,35 @@
                                     </button>
                                 </div>
                             @endif
-                            <form action="{{ route('notificaciones.store') }}" method="POST">
+                            <form action="{{ route('valoraciones.store') }}" method="POST">
                                 @csrf
 
-                                    <div class="col-xs-12 col-sm-12 col-md-12">
-                                        <div class="form-group">
-                                            <label for="usuario_id">Usuario</label>
-                                            <select name="usuario_id" class="form-control">
-                                                @foreach ($usuarios as $usuario)
-                                                    <option value="{{ $usuario->id }}">{{ $usuario->nombre }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                        <label for="viaje_id">Viaje</label>
+                                        <select name="viaje_id" class="form-control">
+                                            @foreach ($viajes as $viaje)
+                                                <option value="{{ $viaje->id }}">{{ $viaje->id }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
                                         <div class="col-xs-12 col-sm-12 col-md-12">
                                             <div class="form-group">
-                                                <label for="tipo">Tipo</label>
-                                                <input type="text" name="tipo" class="form-control">
+                                                <label for="puntuacion">Puntuación</label>
+                                                <input type="int" name="puntuacion" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-xs-12 col-sm-12 col-md-12">
                                             <div class="form-group">
-                                                <label for="estado">Estado</label>
-                                                <input type="text" name="estado" class="form-control">
-                                            </div>
-                                        </div>
-
-                                        <div class="col-xs-12 col-sm-12 col-md-12">
-                                            <div class="form-group">
-                                                <label for="fecha">Fecha</label>
-                                                <input type="date" name="fecha" class="form-control">
+                                                <label for="valoracion">Valoracion</label>
+                                                <input type="text" name="valoracion" class="form-control">
                                             </div>
                                         </div>
 
-                                        <div class="col-xs-12 col-sm-12 col-md-12">
-                                            <div class="form-group">
-                                                <label for="contenido">Contenido</label>
-                                                <input type="text" name="contenido" class="form-control">
-                                            </div>
-                                        </div>
+
                                         <div class="col-xs-12 col-sm-12 col-md-12">
 
                                             <button type="submit" class="btn btn-primary">Guardar</button>
