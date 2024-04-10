@@ -24,8 +24,8 @@
             <div class="row">
                 <div class="col-md-6 offset-md-3">
                     <div class="login-brand">
-                        <h2><b>Social</b>Trip</h2>
-                        <img src="{{ asset('img/logo.png') }}" alt="logo" width="100"
+                        <h2><b>Social</b>Trips</h2>
+                        <img src="{{ asset('img/logo-social-rosa.png') }}" alt="logo" width="100"
                              class="shadow-light">
                     </div>
                     @yield('content')

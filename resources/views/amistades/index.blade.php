@@ -3,56 +3,43 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h3 class="page__heading">Imagenes</h3>
+            <h3 class="page__heading">Amistades</h3>
         </div>
         <div class="section-body">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            @can('crear-imagen')
-                                <a class="btn btn-warning" href="{{ route('imagenes.create') }}">Crear</a>
+                            @can('crear-amistad')
+                                <a class="btn btn-warning" href="{{ route('amistades.create') }}">Crear</a>
                             @endcan
                             <table class="table table-striped mt-2">
                                 <thead style="background-color: #6777ef";>
                                     <th style="display: none;">ID</th>
-                                    <th style="color:#fff">Ruta</th>
-                                    <th style="color:#fff">Album</th>
-                                    <th style="color:#fff">Post</th>
-                                    <th style="color:#fff">Viaje</th>
-
-
+                                    <th style="color:#fff">Usuario 1</th>
+                                    <th style="color:#fff">Usuario 2</th>
+                                    <th style="color:#fff">Estado</th>
                                 </thead>
                                 <tbody>
-                                    @foreach ($imagenes as $imagen)
+                                    @foreach ($amistades as $amistad)
                                         <tr>
-                                            <td style="display:none;">{{ $imagen->id }}</td>
-                                            <td>{{ $imagen->ruta }}</td>
-                                            <td>{{ $imagen->albumId->nombre }}</td>
-                                            @if ($imagen->posts_id != null)
-                                                <td>{{ $imagen->postId->titulo }}</td>
-                                            @endif
-                                            @if ($imagen->posts_id == null)
-                                                <td>{{ '' }}</td>
-                                            @endif
-                                            @if ($imagen->viajes_id != null)
-                                                <td>{{ $imagen->viajeId->id }}</td>
-                                            @endif
-                                            @if ($imagen->viajes_id == null)
-                                                <td>{{ '' }}</td>
-                                            @endif
+                                            <td style="display:none;">{{ $amistad->id }}</td>
+                                            <td>{{ $amistad->usuario1Id->nombre }}</td>
+                                            <td>{{ $amistad->usuario2Id->nombre }}</td>
+                                            <td>{{ $amistad->estado}}</td>
+
 
 
                                             <td>
-                                                <form action="{{ route('imagenes.destroy', $imagen->id) }}" method="POST">
-                                                    @can('editar-imagen')
+                                                <form action="{{ route('amistades.destroy', $amistad->id) }}" method="POST">
+                                                    @can('editar-amistad')
                                                         <a class="btn btn-info"
-                                                            href="{{ route('imagenes.edit', $imagen->id) }}">Editar</a>
+                                                            href="{{ route('amistades.edit', $amistad->id) }}">Editar</a>
                                                     @endcan
 
                                                     @csrf
                                                     @method('DELETE')
-                                                    @can('borrar-imagen')
+                                                    @can('borrar-amistad')
                                                         <button type="submit" class="btn btn-danger">Borrar</button>
                                                     @endcan
                                                     @if ($errors->has('delete_error'))
@@ -67,7 +54,7 @@
                                 </tbody>
                             </table>
                         </div class="pagination justify-content-end">
-                        {!! $imagenes->links() !!}
+                        {!! $amistades->links() !!}
                     </div>
                 </div>
             </div>

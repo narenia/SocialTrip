@@ -3,7 +3,7 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h3 class="page__heading">Crear ciudad</h3>
+            <h3 class="page__heading">Crear amistad</h3>
         </div>
         <div class="section-body">
             <div class="row">
@@ -23,33 +23,47 @@
                                     </button>
                                 </div>
                             @endif
-
-                            <form action="{{ route('ciudades.store') }}" method="POST">
+                            <form action="{{ route('amistades.store') }}" method="POST">
                                 @csrf
-                                <div class="row">
+
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="form-group">
-                                            <label for="nombre">Nombre</label>
-                                            <input type="text" name="nombre" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-12 col-md-12">
-                                        <div class="form-group">
-                                            <label for="pais_id">País</label>
-                                            <select name="pais_id" class="form-control">
-                                                @foreach($paises as $pais)
-                                                    <option value="{{ $pais->id }}">{{ $pais->nombre }}</option>
+                                            <label for="usuario1_id">Usuario 1</label>
+                                            <select name="usuario1_id" class="form-control">
+                                                @foreach ($usuarios as $usuario)
+                                                    <option value="{{ $usuario->id }}">{{ $usuario->nombre }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                     </div>
 
                                     <div class="col-xs-12 col-sm-12 col-md-12">
-                                        <button type="submit" class="btn btn-primary">Guardar</button>
+                                        <div class="form-group">
+                                            <label for="usuario2_id">Usuario 2</label>
+                                            <select name="usuario2_id" class="form-control">
+                                                @foreach ($usuarios as $usuario)
+                                                    <option value="{{ $usuario->id }}">{{ $usuario->nombre }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
                                     </div>
-                                </div>
-                            </form>
 
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="form-group">
+                                            <label for="estado">Estado</label>
+                                            <select name="estado" class="form-control">
+                                                    <option value="Pendiente">Pendiente</option>
+                                                    <option value="Activa">Activa</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+
+                                            <button type="submit" class="btn btn-primary">Guardar</button>
+                                        </div>
+                                    </div>
+                            </form>
                         </div>
                     </div>
                 </div>

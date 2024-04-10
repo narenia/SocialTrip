@@ -44,6 +44,7 @@ class ViajeController extends Controller
         $transportes = Transportes::all();
         $estados_viajes = Estados_viaje::all();
         $ciudades = Ciudades::all();
+
         return view('viajes.crear', compact('usuarios','transportes','estados_viajes','ciudades'));
     }
 
@@ -127,4 +128,6 @@ class ViajeController extends Controller
         $viaje->delete();
         return redirect()->route('viajes.index');
     }
+
+
 }

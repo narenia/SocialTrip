@@ -95,4 +95,6 @@ class EstadosViajeController extends Controller
         $estado_viaje->delete();
         return redirect()->route('estados_viaje.index');
     }
+
+    
 }

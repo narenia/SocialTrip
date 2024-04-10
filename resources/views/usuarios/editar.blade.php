@@ -3,7 +3,7 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h3 class="page__heading">Alta de usuarios del Panel de Control</h3>
+            <h3 class="page__heading">Editar usuario</h3>
         </div>
         <div class="section-body">
             <div class="row">
@@ -72,7 +72,7 @@
                                         {!! Form::password('contrasenna', ['class' => 'form-control']) !!}
                                     </div>
                                 </div>
-                                
+
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <label for="ciudad_residencia">Ciudad de residencia</label>

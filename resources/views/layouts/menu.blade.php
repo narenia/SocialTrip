@@ -73,8 +73,14 @@
         </a>
     @endcan
     @can('ver-imagen')
-    <a class="nav-link" href="/imagenes">
-        <i class=" fas fa-solid fa-camera"></i><span>Imagenes</span>
-    </a>
-@endcan
+        <a class="nav-link" href="/imagenes">
+            <i class=" fas fa-solid fa-camera"></i><span>Imagenes</span>
+        </a>
+    @endcan
+
+    @can('ver-amistad')
+        <a class="nav-link" href="/amistades">
+            <i class=" fas fa-solid fa-people-arrows"></i><span>Amistades</span>
+        </a>
+    @endcan
 </li>

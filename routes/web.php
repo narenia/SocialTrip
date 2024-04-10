@@ -17,6 +17,7 @@ use App\Http\Controllers\ViajeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ImagenController;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\AmistadController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,15 +30,14 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+
 
 Auth::routes();
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::group(['middleware' => ['auth']], function () {
+    Route::get('/', function () {return view('home');});
     Route::resource('roles', RolController::class);
     Route::resource('users', UsersController::class);
     Route::resource('usuarios', UsuariosController::class);
@@ -118,4 +118,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('imagenes/{imagen}/edit', [ImagenController::class, 'edit'])->name('imagenes.edit');
     Route::put('imagenes/{imagen}', [ImagenController::class, 'update'])->name('imagenes.update');
     Route::delete('imagenes/{imagen}', [ImagenController::class, 'destroy'])->name('imagenes.destroy');
+    // Rutas específicas para el controlador Amistades
+    Route::get('amistades', [AmistadController::class, 'index'])->name('amistades.index');
+    Route::get('amistades/create', [AmistadController::class, 'create'])->name('amistades.create');
+    Route::post('amistades', [AmistadController::class, 'store'])->name('amistades.store');
+    Route::get('amistades/{amistad}/edit', [AmistadController::class, 'edit'])->name('amistades.edit');
+    Route::put('amistades/{amistades}', [AmistadController::class, 'update'])->name('amistades.update');
+    Route::delete('amistades/{amistad}', [AmistadController::class, 'destroy'])->name('amistades.destroy');
 });

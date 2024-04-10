@@ -87,6 +87,11 @@ class SeederTablaPermisos extends Seeder
             'crear-imagen',
             'editar-imagen',
             'borrar-imagen',
+            //Tabla amistad
+            'ver-amistad',
+            'crear-amistad',
+            'editar-amistad',
+            'borrar-amistad',
         ];
 
         foreach ($permisos as $permiso) {

@@ -23,7 +23,7 @@
                                 </div>
                             @endif
 
-                            <form action="{{ route('valoraciones.update', $notificacion->id) }}" method="POST">
+                            <form action="{{ route('valoraciones.update', $valoracion->id) }}" method="POST">
                                 @csrf
                                 @method('PUT')
                                 <div class="col-xs-12 col-sm-12 col-md-12">
