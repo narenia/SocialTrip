@@ -110,4 +110,37 @@ class ComentarioController extends Controller
         $comentario->delete();
         return redirect()->route('comentarios.index');
     }
+
+    public function crearComentario(Request $request)
+    {
+        $request->validate([
+            'contenido' => 'required|max:600',
+            'usuarios_id' => 'required|exists:usuarios,id',
+            'post_id' => 'required|exists:posts,id'
+        ]);
+
+        $comentario = Comentarios::create($request->all());
+
+        return response()->json(['message' => 'Comentario creado correctamente']);
+    }
+
+    public function editarComentario(Request $request, Comentarios $comentario)
+    {
+        $request->validate([
+            'contenido' => 'required|max:600',
+            'usuarios_id' => 'required|exists:usuarios,id',
+            'post_id' => 'required|exists:posts,id'
+        ]);
+
+        $comentario->update($request->all());
+
+        return response()->json(['message' => 'Comentario actualizado correctamente']);
+    }
+
+    public function borrarComentario(Comentarios $comentario)
+    {
+        $comentario->delete();
+
+        return response()->json(['message' => 'Comentario eliminado correctamente']);
+    }
 }

@@ -111,7 +111,7 @@ class AlbumController extends Controller
         $albumes = Albumes::where('nombre', 'like', "%$terminoBusqueda%")
             ->get();
 
-        return response()->json(['albumes' => $albumes], 200);
+        return response()->json(['albumes' => $albumes]);
     }
 
     public function crear(Request $request)
@@ -123,7 +123,7 @@ class AlbumController extends Controller
 
         Albumes::create($request->all());
 
-        return response()->json(['message' => 'Álbum creado correctamente'], 201);
+        return response()->json(['message' => 'Álbum creado correctamente']);
     }
 
     public function editar(Request $request, Albumes $album)
@@ -135,13 +135,13 @@ class AlbumController extends Controller
 
         $album->update($request->all());
 
-        return response()->json(['message' => 'Álbum actualizado correctamente'], 200);
+        return response()->json(['message' => 'Álbum actualizado correctamente']);
     }
 
     public function borrar(Albumes $album)
     {
         $album->delete();
 
-        return response()->json(['message' => 'Álbum eliminado correctamente'], 200);
+        return response()->json(['message' => 'Álbum eliminado correctamente']);
     }
 }

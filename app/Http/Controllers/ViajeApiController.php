@@ -11,7 +11,7 @@ class ViajeApiController extends Controller
     {
         $viajes = Viajes::all();
 
-        return response()->json(['viajes' => $viajes], 200);
+        return response()->json(['viajes' => $viajes]);
     }
 
     public function store(Request $request)
@@ -29,7 +29,7 @@ class ViajeApiController extends Controller
 
         Viajes::create($request->all());
 
-        return response()->json(['message' => 'Viaje registrado con éxito'], 201);
+        return response()->json(['message' => 'Viaje registrado con éxito']);
     }
 
     public function update(Request $request, Viajes $viaje)
@@ -47,26 +47,26 @@ class ViajeApiController extends Controller
 
         $viaje->update($request->all());
 
-        return response()->json(['message' => 'Viaje actualizado con éxito'], 200);
+        return response()->json(['message' => 'Viaje actualizado con éxito']);
     }
 
     public function destroy(Viajes $viaje)
     {
         $viaje->delete();
 
-        return response()->json(['message' => 'Viaje eliminado con éxito'], 200);
+        return response()->json(['message' => 'Viaje eliminado con éxito']);
     }
     public function recomendarViaje(Request $request, $id)
     {
         $viaje = Viajes::find($id);
 
         if (!$viaje) {
-            return response()->json(['message' => 'Viaje no encontrado'], 404);
+            return response()->json(['message' => 'Viaje no encontrado']);
         }
 
         $viaje->update(['recomendado' => true]);
 
-        return response()->json(['message' => 'Viaje recomendado con éxito'], 200);
+        return response()->json(['message' => 'Viaje recomendado con éxito']);
     }
 
     public function noRecomendarViaje(Request $request, $id)
@@ -74,12 +74,12 @@ class ViajeApiController extends Controller
         $viaje = Viajes::find($id);
 
         if (!$viaje) {
-            return response()->json(['message' => 'Viaje no encontrado'], 404);
+            return response()->json(['message' => 'Viaje no encontrado']);
         }
 
         $viaje->update(['recomendado' => false]);
 
-        return response()->json(['message' => 'Viaje marcado como no recomendado'], 200);
+        return response()->json(['message' => 'Viaje marcado como no recomendado']);
     }
 
     public function cambiarEstado(Request $request, $id)
@@ -92,6 +92,6 @@ class ViajeApiController extends Controller
 
         $viaje->update(['estados_viajes_id' => $request->estado_id]);
 
-        return response()->json(['message' => 'Estado del viaje actualizado correctamente'], 200);
+        return response()->json(['message' => 'Estado del viaje actualizado correctamente']);
     }
 }

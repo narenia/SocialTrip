@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ViajeApiController;
 use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\AmistadController;
+use App\Http\Controllers\ComentarioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +27,7 @@ Route::delete('/viajes/{viaje}', [ViajeApiController::class, 'destroy']);
 Route::get('/viajes', [ViajeApiController::class, 'index']);
 Route::post('/amistades/solicitar', [AmistadController::class, 'solicitarAmistad']);
 Route::put('/amistades/{id}/aceptar', [AmistadController::class, 'aceptarSolicitudAmistad']);
-Route::delete('/amistades/{id}/rechazar',[AmistadController::class, 'rechazarSolicitudAmistad']);
+Route::delete('/amistades/{id}/rechazar', [AmistadController::class, 'rechazarSolicitudAmistad']);
 Route::delete('/amistades/{id}', [AmistadController::class, 'borrarAmigo']);
 Route::get('/amistades/buscar', [AmistadController::class, 'buscarAmigo']);
 Route::put('/viajes/{id}/recomendar', [ViajeApiController::class, 'recomendarViaje']);
@@ -36,3 +37,6 @@ Route::put('/albumes/{album}', [AlbumController::class, 'editar']);
 Route::delete('/albumes/{album}', [AlbumController::class, 'borrar']);
 Route::get('/albumes/buscar', [AlbumController::class, 'buscar']);
 Route::put('/viajes/{id}/cambiar-estado', [ViajeApiController::class, 'cambiarEstado']);
+Route::post('/comentarios', [ComentarioController::class, 'crearComentario']);
+Route::put('/comentarios/{comentario}', [ComentarioController::class, 'editarComentario']);
+Route::delete('/comentarios/{comentario}', [ComentarioController::class, 'borrarComentario']);

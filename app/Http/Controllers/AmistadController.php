@@ -123,7 +123,7 @@ class AmistadController extends Controller
             ->exists();
 
         if ($solicitudExistente) {
-            return response()->json(['message' => 'Ya existe una solicitud de amistad entre estos usuarios'], 400);
+            return response()->json(['message' => 'Ya existe una solicitud de amistad entre estos usuarios']);
         }
 
         Amistades::create([
@@ -132,7 +132,7 @@ class AmistadController extends Controller
             'estado' => 'Pendiente'
         ]);
 
-        return response()->json(['message' => 'Solicitud de amistad enviada'], 200);
+        return response()->json(['message' => 'Solicitud de amistad enviada']);
     }
 
     public function aceptarSolicitudAmistad($id)
@@ -140,12 +140,12 @@ class AmistadController extends Controller
         $amistad = Amistades::find($id);
 
         if (!$amistad) {
-            return response()->json(['message' => 'Solicitud de amistad no encontrada'], 404);
+            return response()->json(['message' => 'Solicitud de amistad no encontrada']);
         }
 
         $amistad->update(['estado' => 'Aceptada']);
 
-        return response()->json(['message' => 'Solicitud de amistad aceptada'], 200);
+        return response()->json(['message' => 'Solicitud de amistad aceptada']);
     }
 
     public function rechazarSolicitudAmistad($id)
@@ -153,12 +153,12 @@ class AmistadController extends Controller
         $amistad = Amistades::find($id);
 
         if (!$amistad) {
-            return response()->json(['message' => 'Solicitud de amistad no encontrada'], 404);
+            return response()->json(['message' => 'Solicitud de amistad no encontrada']);
         }
 
         $amistad->delete();
 
-        return response()->json(['message' => 'Solicitud de amistad rechazada'], 200);
+        return response()->json(['message' => 'Solicitud de amistad rechazada']);
     }
 
     public function borrarAmigo($id)
@@ -166,12 +166,12 @@ class AmistadController extends Controller
         $amistad = Amistades::find($id);
 
         if (!$amistad) {
-            return response()->json(['message' => 'Amistad no encontrada'], 404);
+            return response()->json(['message' => 'Amistad no encontrada']);
         }
 
         $amistad->delete();
 
-        return response()->json(['message' => 'Amistad eliminada correctamente'], 200);
+        return response()->json(['message' => 'Amistad eliminada correctamente']);
     }
     public function buscarAmigo(Request $request)
     {
@@ -181,6 +181,6 @@ class AmistadController extends Controller
             ->orWhere('apellido', 'like', "%$terminoBusqueda%")
             ->get();
 
-        return response()->json(['amigos' => $amigos], 200);
+        return response()->json(['amigos' => $amigos]);
     }
 }
