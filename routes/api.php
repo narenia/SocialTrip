@@ -6,6 +6,8 @@ use App\Http\Controllers\ViajeApiController;
 use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\AmistadController;
 use App\Http\Controllers\ComentarioController;
+use App\Http\Controllers\UsuariosController;
+use App\Http\Controllers\ValoracionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,3 +42,11 @@ Route::put('/viajes/{id}/cambiar-estado', [ViajeApiController::class, 'cambiarEs
 Route::post('/comentarios', [ComentarioController::class, 'crearComentario']);
 Route::put('/comentarios/{comentario}', [ComentarioController::class, 'editarComentario']);
 Route::delete('/comentarios/{comentario}', [ComentarioController::class, 'borrarComentario']);
+Route::post('/valoraciones', [ValoracionController::class, 'crearValoracion']);
+Route::put('/valoraciones/{valoracion}', [ValoracionController::class, 'editarValoracion']);
+Route::delete('/valoraciones/{valoracion}',  [ValoracionController::class, 'borrarValoracion']);
+Route::post('/usuarios/registrar', [UsuariosController::class, 'registrar']);
+Route::put('/usuarios/{id}', [UsuariosController::class, 'editar']);
+Route::post('/usuarios/login', [UsuariosController::class, 'login']);
+Route::get('/usuarios', [UsuariosController::class, 'obtenerUsuarios']);
+Route::delete('/usuarios/{id}', [UsuariosController::class, 'eliminarUsuario']);
