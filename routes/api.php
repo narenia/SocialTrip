@@ -4,15 +4,11 @@ use App\Http\Controllers\AlbumApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ViajeApiController;
-use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\AmistadApiController;
-use App\Http\Controllers\AmistadController;
 use App\Http\Controllers\ComentarioApiController;
-use App\Http\Controllers\ComentarioController;
 use App\Http\Controllers\UsuariosApiController;
-use App\Http\Controllers\UsuariosController;
 use App\Http\Controllers\ValoracionApiController;
-use App\Http\Controllers\ValoracionController;
+
 
 /*
 |--------------------------------------------------------------------------
