@@ -31,7 +31,11 @@ Route::put('/viajes/{viaje}', [ViajeApiController::class, 'editarViaje']);
 Route::delete('/viajes/{viaje}', [ViajeApiController::class, 'eliminarViaje']);
 Route::get('/viajes', [ViajeApiController::class, 'obtenerViajes']);
 // ! Nombre correcto /viajes/{id}/estado
+// ! Deberia de usarse la operacion patch (Route::patch) en lugar de put (se usa patch para actualizar solo una parte de un recurso)
 Route::put('/viajes/{id}/cambiar-estado', [ViajeApiController::class, 'cambiarEstado']);
+// ! Deberia de usarse la operacion patch en lugar de put (se usa patch para actualizar solo una parte de un recurso)
+// https://www.deyel.com/doc/Deyel82/metodoputpatch.html
+// Route::patch('');
 Route::put('/viajes/{id}/recomendar', [ViajeApiController::class, 'recomendarViaje']);
 // ! Sobra endpoint /viajes/{id}/recomendar puede pasar como param si es recomendado o no
 Route::put('/viajes/{id}/no-recomendar', [ViajeApiController::class, 'noRecomendarViaje']);
@@ -48,8 +52,10 @@ Route::get('/amistades', [AmistadApiController::class, 'obtenerAmistades']);
 
 //AlbumApiController
 Route::post('/albumes', [AlbumApiController::class, 'crearAlbum']);
+// * Aqui si estaria bien usado el put porque se va a actualizar el recurso entero (todas las propiedades del album)
 Route::put('/albumes/{album}', [AlbumApiController::class, 'editarAlbum']);
 Route::delete('/albumes/{album}', [AlbumApiController::class, 'borrarAlbum']);
+// ! Estos get deberian siempre como minimo permitir buscar por id (y a parte por cualquier otra cosa que se quiera)
 Route::get('/albumes/buscar', [AlbumApiController::class, 'buscarAlbum']);
 Route::get('/albumes', [AlbumApiController::class, 'obtenerAlbumes']);
 

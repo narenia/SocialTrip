@@ -82,6 +82,11 @@ class ViajeApiController extends Controller
         return response()->json(['message' => 'Viaje marcado como no recomendado']);
     }
 
+    // ! Probar el implicit binding
+    // https://laravel.com/docs/11.x/routing#implicit-binding
+    // public function cambiarEstado(Request $request, Viaje $id)
+    // Laravel automaticamente seteara la variable $id con la entidad que tenga ese id
+    // por lo que ya no haria falta hacer $viaje = Viajes::findOrFail($id);
     public function cambiarEstado(Request $request, $id)
     {
         $request->validate([
