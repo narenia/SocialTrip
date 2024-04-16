@@ -30,8 +30,10 @@ Route::post('/viajes', [ViajeApiController::class, 'crearViaje']);
 Route::put('/viajes/{viaje}', [ViajeApiController::class, 'editarViaje']);
 Route::delete('/viajes/{viaje}', [ViajeApiController::class, 'eliminarViaje']);
 Route::get('/viajes', [ViajeApiController::class, 'obtenerViajes']);
+// ! Nombre correcto /viajes/{id}/estado
 Route::put('/viajes/{id}/cambiar-estado', [ViajeApiController::class, 'cambiarEstado']);
 Route::put('/viajes/{id}/recomendar', [ViajeApiController::class, 'recomendarViaje']);
+// ! Sobra endpoint /viajes/{id}/recomendar puede pasar como param si es recomendado o no
 Route::put('/viajes/{id}/no-recomendar', [ViajeApiController::class, 'noRecomendarViaje']);
 
 //AmistadApiController
@@ -39,6 +41,8 @@ Route::post('/amistades/solicitar', [AmistadApiController::class, 'solicitarAmis
 Route::put('/amistades/{id}/aceptar', [AmistadApiController::class, 'aceptarSolicitudAmistad']);
 Route::delete('/amistades/{id}/rechazar', [AmistadApiController::class, 'rechazarSolicitudAmistad']);
 Route::delete('/amistades/{id}', [AmistadApiController::class, 'borrarAmigo']);
+// ! La busqueda tiene que ser por nombre de usuario
+// ! La busqueda deberia enviar 2 parametros distintos (nombre y apellidos)
 Route::get('/amistades/buscar', [AmistadApiController::class, 'buscarAmigo']);
 Route::get('/amistades', [AmistadApiController::class, 'obtenerAmistades']);
 
