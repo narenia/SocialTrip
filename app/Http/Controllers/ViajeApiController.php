@@ -7,14 +7,14 @@ use App\Models\Viajes;
 
 class ViajeApiController extends Controller
 {
-    public function index()
+    public function obtenerViajes()
     {
         $viajes = Viajes::all();
 
         return response()->json(['viajes' => $viajes]);
     }
 
-    public function store(Request $request)
+    public function crearViaje(Request $request)
     {
         $request->validate([
             'fecha_inicio' => 'required|date',
@@ -32,7 +32,7 @@ class ViajeApiController extends Controller
         return response()->json(['message' => 'Viaje registrado con éxito']);
     }
 
-    public function update(Request $request, Viajes $viaje)
+    public function editarViaje(Request $request, Viajes $viaje)
     {
         $request->validate([
             'fecha_inicio' => 'required|date',
@@ -50,7 +50,7 @@ class ViajeApiController extends Controller
         return response()->json(['message' => 'Viaje actualizado con éxito']);
     }
 
-    public function destroy(Viajes $viaje)
+    public function eliminarViaje(Viajes $viaje)
     {
         $viaje->delete();
 
@@ -94,4 +94,5 @@ class ViajeApiController extends Controller
 
         return response()->json(['message' => 'Estado del viaje actualizado correctamente']);
     }
+
 }

@@ -84,4 +84,11 @@ class AmistadApiController extends Controller
 
         return response()->json(['amigos' => $amigos]);
     }
+    public function obtenerAmistades()
+    {
+
+        $amistades = Amistades::all();
+        
+        return response()->json(['amistades' => $amistades]);
+    }
 }

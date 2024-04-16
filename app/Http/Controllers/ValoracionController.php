@@ -48,7 +48,7 @@ class ValoracionController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'puntuacion' => 'required|integer',
+            'puntuacion' => 'required|integer|between:1,10',
             'valoracion' => 'required|max:700',
             'viaje_id' => 'required|exists:viajes,id'
         ]);
@@ -81,8 +81,8 @@ class ValoracionController extends Controller
      */
     public function update(Request $request, Valoraciones $valoracion)
     {
-        $request->validate([
-            'puntuacion' => 'required|integer',
+  $request->validate([
+            'puntuacion' => 'required|integer|between:1,10',
             'valoracion' => 'required|max:700',
             'viaje_id' => 'required|exists:viajes,id'
         ]);

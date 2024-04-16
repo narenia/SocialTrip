@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class AlbumApiController extends Controller
 {
-    public function buscar(Request $request)
+    public function buscarAlbum(Request $request)
     {
         $terminoBusqueda = $request->input('termino');
 
@@ -17,7 +17,7 @@ class AlbumApiController extends Controller
         return response()->json(['albumes' => $albumes]);
     }
 
-    public function crear(Request $request)
+    public function crearAlbum(Request $request)
     {
         $request->validate([
             'nombre' => 'required',
@@ -29,7 +29,7 @@ class AlbumApiController extends Controller
         return response()->json(['message' => 'Álbum creado correctamente']);
     }
 
-    public function editar(Request $request, Albumes $album)
+    public function editarAlbum(Request $request, Albumes $album)
     {
         $request->validate([
             'nombre' => 'required',
@@ -41,10 +41,18 @@ class AlbumApiController extends Controller
         return response()->json(['message' => 'Álbum actualizado correctamente']);
     }
 
-    public function borrar(Albumes $album)
+    public function borrarAlbum(Albumes $album)
     {
         $album->delete();
 
         return response()->json(['message' => 'Álbum eliminado correctamente']);
+    }
+
+    public function obtenerAlbumes()
+    {
+
+        $albumes = Albumes::all();
+
+        return response()->json(['albumes' => $albumes]);
     }
 }

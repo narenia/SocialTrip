@@ -41,7 +41,7 @@
                                         <div class="col-xs-12 col-sm-12 col-md-12">
                                             <div class="form-group">
                                                 <label for="puntuacion">Puntuación</label>
-                                                <input type="int" name="puntuacion" class="form-control">
+                                                <input type="int" name="puntuacion" class="form-control" min="1" max="10">
                                             </div>
                                         </div>
                                         <div class="col-xs-12 col-sm-12 col-md-12">

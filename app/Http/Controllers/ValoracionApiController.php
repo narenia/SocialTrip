@@ -10,7 +10,7 @@ class ValoracionApiController extends Controller
     public function crearValoracion(Request $request)
     {
         $request->validate([
-            'puntuacion' => 'required|integer',
+            'puntuacion' => 'required|integer|between:1,10|max:10',
             'valoracion' => 'required|max:700',
             'viaje_id' => 'required|exists:viajes,id'
         ]);
@@ -23,7 +23,7 @@ class ValoracionApiController extends Controller
     public function editarValoracion(Request $request, Valoraciones $valoracion)
     {
         $request->validate([
-            'puntuacion' => 'required|integer',
+            'puntuacion' => 'required|integer|between:1,10|max:10',
             'valoracion' => 'required|max:700',
             'viaje_id' => 'required|exists:viajes,id'
         ]);
@@ -38,5 +38,13 @@ class ValoracionApiController extends Controller
         $valoracion->delete();
 
         return response()->json(['message' => 'Valoración eliminada correctamente']);
+    }
+
+    public function obtenerValoraciones()
+    {
+
+        $valoraciones = Valoraciones::all();
+
+        return response()->json(['valoraciones' => $valoraciones]);
     }
 }

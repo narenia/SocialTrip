@@ -40,4 +40,13 @@ class ComentarioApiController extends Controller
 
         return response()->json(['message' => 'Comentario eliminado correctamente']);
     }
+
+    public function obtenerComentarios()
+    {
+
+        $comentarios = Comentarios::all();
+
+        return response()->json(['comentarios' => $comentarios]);
+    }
+
 }

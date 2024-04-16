@@ -24,30 +24,47 @@ use App\Http\Controllers\ValoracionApiController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::post('/viajes', [ViajeApiController::class, 'store']);
-Route::put('/viajes/{viaje}', [ViajeApiController::class, 'update']);
-Route::delete('/viajes/{viaje}', [ViajeApiController::class, 'destroy']);
-Route::get('/viajes', [ViajeApiController::class, 'index']);
+
+//ViajeApiController
+Route::post('/viajes', [ViajeApiController::class, 'crearViaje']);
+Route::put('/viajes/{viaje}', [ViajeApiController::class, 'editarViaje']);
+Route::delete('/viajes/{viaje}', [ViajeApiController::class, 'eliminarViaje']);
+Route::get('/viajes', [ViajeApiController::class, 'obtenerViajes']);
+Route::put('/viajes/{id}/cambiar-estado', [ViajeApiController::class, 'cambiarEstado']);
+Route::put('/viajes/{id}/recomendar', [ViajeApiController::class, 'recomendarViaje']);
+Route::put('/viajes/{id}/no-recomendar', [ViajeApiController::class, 'noRecomendarViaje']);
+
+//AmistadApiController
 Route::post('/amistades/solicitar', [AmistadApiController::class, 'solicitarAmistad']);
 Route::put('/amistades/{id}/aceptar', [AmistadApiController::class, 'aceptarSolicitudAmistad']);
 Route::delete('/amistades/{id}/rechazar', [AmistadApiController::class, 'rechazarSolicitudAmistad']);
 Route::delete('/amistades/{id}', [AmistadApiController::class, 'borrarAmigo']);
 Route::get('/amistades/buscar', [AmistadApiController::class, 'buscarAmigo']);
-Route::put('/viajes/{id}/recomendar', [AmistadApiController::class, 'recomendarViaje']);
-Route::put('/viajes/{id}/no-recomendar', [AmistadApiController::class, 'noRecomendarViaje']);
-Route::post('/albumes', [AlbumApiController::class, 'crear']);
-Route::put('/albumes/{album}', [AlbumApiController::class, 'editar']);
-Route::delete('/albumes/{album}', [AlbumApiController::class, 'borrar']);
-Route::get('/albumes/buscar', [AlbumApiController::class, 'buscar']);
-Route::put('/viajes/{id}/cambiar-estado', [ViajeApiController::class, 'cambiarEstado']);
+Route::get('/amistades', [AmistadApiController::class, 'obtenerAmistades']);
+
+//AlbumApiController
+Route::post('/albumes', [AlbumApiController::class, 'crearAlbum']);
+Route::put('/albumes/{album}', [AlbumApiController::class, 'editarAlbum']);
+Route::delete('/albumes/{album}', [AlbumApiController::class, 'borrarAlbum']);
+Route::get('/albumes/buscar', [AlbumApiController::class, 'buscarAlbum']);
+Route::get('/albumes', [AlbumApiController::class, 'obtenerAlbumes']);
+
+//ComentarioApiController
 Route::post('/comentarios', [ComentarioApiController::class, 'crearComentario']);
 Route::put('/comentarios/{comentario}', [ComentarioApiController::class, 'editarComentario']);
 Route::delete('/comentarios/{comentario}', [ComentarioApiController::class, 'borrarComentario']);
+Route::get('/comentarios', [ComentarioApiController::class, 'obtenerComentarios']);
+
+//ValoracionApiController
 Route::post('/valoraciones', [ValoracionApiController ::class, 'crearValoracion']);
 Route::put('/valoraciones/{valoracion}', [ValoracionApiController::class, 'editarValoracion']);
 Route::delete('/valoraciones/{valoracion}',  [ValoracionApiController::class, 'borrarValoracion']);
-Route::post('/usuarios/registrar', [UsuariosApiController::class, 'registrar']);
-Route::put('/usuarios/{id}', [UsuariosApiController::class, 'editar']);
+Route::get('/valoraciones', [ValoracionApiController ::class, 'obtenerValoraciones']);
+
+//UsuariosApiController
+Route::post('/usuarios/registrar', [UsuariosApiController::class, 'registrarUsuario']);
+Route::put('/usuarios/{id}', [UsuariosApiController::class, 'editarUsuario']);
 Route::post('/usuarios/login', [UsuariosApiController::class, 'login']);
 Route::get('/usuarios', [UsuariosApiController::class, 'obtenerUsuarios']);
 Route::delete('/usuarios/{id}', [UsuariosApiController::class, 'eliminarUsuario']);
+

@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Hash;
 
 class UsuariosApiController extends Controller
 {
-    public function registrar(Request $request)
+    public function registrarUsuario(Request $request)
     {
         $request->validate([
             'nombre' => 'required|string|max:25',
@@ -31,7 +31,7 @@ class UsuariosApiController extends Controller
         return response()->json(['message' => 'Usuario registrado correctamente', 'usuario' => $usuario], 201);
     }
 
-    public function editar(Request $request, $id)
+    public function editarUsuario(Request $request, $id)
     {
         $this->validate($request, [
             'nombre' => 'required|string|max:25',

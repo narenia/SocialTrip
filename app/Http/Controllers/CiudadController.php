@@ -49,7 +49,7 @@ class CiudadController extends Controller
         request()->validate(
             [
                 'nombre' => 'required',
-                'pais_id' => 'required'
+                'pais_id' => 'required|exists:paises,id'
             ]
         );
 
@@ -80,7 +80,7 @@ class CiudadController extends Controller
     {
         request()->validate([
             'nombre' => 'required',
-            'pais_id' => 'required'
+            'pais_id' => 'required|exists:paises,id'
         ]);
         $ciudad->update($request->all());
         return redirect()->route('ciudades.index');
