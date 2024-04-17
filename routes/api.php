@@ -8,7 +8,7 @@ use App\Http\Controllers\AmistadApiController;
 use App\Http\Controllers\ComentarioApiController;
 use App\Http\Controllers\UsuariosApiController;
 use App\Http\Controllers\ValoracionApiController;
- 
+
 
 /*
 |--------------------------------------------------------------------------
