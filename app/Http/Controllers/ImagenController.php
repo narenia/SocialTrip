@@ -57,22 +57,13 @@ class ImagenController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'imagen' => 'required|image|mimes:jpeg,png,jpg,gif', // Validación para asegurar que se envíe una imagen
+            'ruta' => 'required',
             'album_id' => 'nullable|exists:albumes,id',
             'posts_id' => 'nullable|exists:posts,id',
             'viajes_id' => 'nullable|exists:viajes,id',
         ]);
 
-        // Subir la imagen al almacenamiento
-        $imagenPath = $request->file('imagen')->store('imagenes');
-
-        // Crear la entrada en la base de datos con la ruta de la imagen
-        Imagenes::create([
-            'ruta' => $imagenPath,
-            'album_id' => $request->input('album_id'),
-            'posts_id' => $request->input('posts_id'),
-            'viajes_id' => $request->input('viajes_id'),
-        ]);
+        Imagenes::create($request->all());
 
         return redirect()->route('imagenes.index');
     }

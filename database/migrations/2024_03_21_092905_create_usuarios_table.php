@@ -18,13 +18,13 @@ return new class extends Migration
             $table->string('email', 60)->unique();
             $table->string('contrasenna', 20);
             $table->smallInteger('tipo')->nullable();
-            $table->date('fecha_nacimiento');
-            $table->string('nombre',25);
-            $table->string('apellidos',60);
+            $table->date('fecha_nacimiento')->nullable();;
+            $table->string('nombre',25)->nullable();;
+            $table->string('apellidos',60)->nullable();;
             $table->string('nombre_usuario',45)->unique();
             $table->string('dni',9)->nullable()->unique();
-            $table->unsignedBigInteger('ciudad_residencia');
-            $table->unsignedBigInteger('ciudad_nacimiento');
+            $table->unsignedBigInteger('ciudad_residencia')->nullable();;
+            $table->unsignedBigInteger('ciudad_nacimiento')->nullable();;
             $table->foreign('ciudad_residencia')->references('id')->on('ciudades')->onDelete('cascade');
             $table->foreign('ciudad_nacimiento')->references('id')->on('ciudades')->onDelete('cascade');
             $table->timestamps();

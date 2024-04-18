@@ -12,24 +12,36 @@ class UsuariosApiController extends Controller
     public function registrarUsuario(Request $request)
     {
         $request->validate([
-            'nombre' => 'required|string|max:25',
             'email' => 'required|email|unique:usuarios,email',
             'contrasenna' => 'required|string|min:6|max:20',
-            'tipo' => 'nullable|integer',
-            'fecha_nacimiento' => 'required|date',
-            'apellidos' => 'required|string|max:60',
             'nombre_usuario' => 'required|string|max:45|unique:usuarios,nombre_usuario',
+            // Resto de campos permitidos como nulos
+            'nombre' => 'nullable|string|max:25',
+            'tipo' => 'nullable|integer',
+            'fecha_nacimiento' => 'nullable|date',
+            'apellidos' => 'nullable|string|max:60',
             'dni' => 'nullable|string|max:9|unique:usuarios,dni',
-            'ciudad_residencia' => 'required|exists:ciudades,id',
-            'ciudad_nacimiento' => 'required|exists:ciudades,id',
+            'ciudad_residencia' => 'nullable|exists:ciudades,id',
+            'ciudad_nacimiento' => 'nullable|exists:ciudades,id',
         ]);
 
+        // Obtener los datos de la solicitud
         $input = $request->all();
-        // $input['contrasenna'] = Hash::make($input['contrasenna']);
-        $usuario = Usuarios::create($input);
+
+        // Crear un nuevo array con los campos requeridos
+        $usuarioData = [
+            'email' => $input['email'],
+            'contrasenna' => $input['contrasenna'],
+            'nombre_usuario' => $input['nombre_usuario'],
+        ];
+
+        // Crear el usuario con los datos proporcionados
+        $usuario = Usuarios::create($usuarioData);
 
         return response()->json(['message' => 'Usuario registrado correctamente', 'usuario' => $usuario], 201);
     }
+
+
 
     public function editarUsuario(Request $request, $id)
     {
