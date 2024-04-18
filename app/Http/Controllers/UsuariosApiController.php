@@ -28,16 +28,21 @@ class UsuariosApiController extends Controller
         // Obtener los datos de la solicitud
         $input = $request->all();
 
+        // Verificar si fecha_nacimiento está presente en la solicitud
+        if (!isset($input['fecha_nacimiento'])) {
+            $input['fecha_nacimiento'] = null;
+        }
+
         // Crear un nuevo array con los campos requeridos
         $usuarioData = [
             'email' => $input['email'],
             'contrasenna' => $input['contrasenna'],
             'nombre_usuario' => $input['nombre_usuario'],
+            'fecha_nacimiento' => $input['fecha_nacimiento'], // Incluso si es null
         ];
 
         // Crear el usuario con los datos proporcionados
         $usuario = Usuarios::create($usuarioData);
-
         return response()->json(['message' => 'Usuario registrado correctamente', 'usuario' => $usuario], 201);
     }
 
@@ -90,14 +95,13 @@ class UsuariosApiController extends Controller
     }
 
     public function eliminarUsuario($id)
-{
-    $usuario = Usuarios::find($id);
-    if (!$usuario) {
-        return response()->json(['message' => 'Usuario no encontrado'], 404);
+    {
+        $usuario = Usuarios::find($id);
+        if (!$usuario) {
+            return response()->json(['message' => 'Usuario no encontrado'], 404);
+        }
+
+        $usuario->delete();
+        return response()->json(['message' => 'Usuario eliminado correctamente'], 200);
     }
-
-    $usuario->delete();
-    return response()->json(['message' => 'Usuario eliminado correctamente'], 200);
-}
-
 }
