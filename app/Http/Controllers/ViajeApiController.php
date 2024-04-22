@@ -7,6 +7,11 @@ use App\Models\Viajes;
 
 class ViajeApiController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:usuarios');
+    }
+
     public function obtenerViajes()
     {
         $viajes = Viajes::all();

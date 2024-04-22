@@ -16,7 +16,7 @@
 
                                     <div class="card bg-c-pink order-card">
                                         <div class="card-block">
-                                            <a href="/users" class="text-white">
+                                            <a href="/public/users" class="text-white">
                                                 <h5>Usuarios con acceso al Panel</h5>
                                             </a>
 
@@ -35,7 +35,7 @@
 
                                     <div class="card bg-c-blue order-card">
                                         <div class="card-block">
-                                            <a href="/usuarios" class="text-white">
+                                            <a href="/public/usuarios" class="text-white">
                                                 <h5>Usuarios </h5>
                                             </a>
                                             @php
@@ -53,7 +53,7 @@
                                 <div class="col-md-4 col-xl-4">
                                     <div class="card bg-c-green order-card">
                                         <div class="card-block">
-                                            <a href="/roles" class="text-white">
+                                            <a href="/public/roles" class="text-white">
                                                 <h5>Roles</h5>
                                             </a>
                                             @php
@@ -70,7 +70,7 @@
                                 <div class="col-md-4 col-xl-4">
                                     <div class="card bg-c-pink order-card">
                                         <div class="card-block">
-                                            <a href="/paises" class="text-white">
+                                            <a href="/public/paises" class="text-white">
                                                 <h5>Paises</h5>
                                             </a>
                                             @php
@@ -87,7 +87,7 @@
                                 <div class="col-md-4 col-xl-4">
                                     <div class="card bg-c-blue order-card">
                                         <div class="card-block">
-                                            <a href="/roles" class="text-white">
+                                            <a href="/public/roles" class="text-white">
                                                 <h5>Ciudades</h5>
                                             </a>
 
@@ -105,7 +105,7 @@
                                 <div class="col-md-4 col-xl-4">
                                     <div class="card bg-c-green order-card">
                                         <div class="card-block">
-                                            <a href="/transportes" class="text-white">
+                                            <a href="/public/transportes" class="text-white">
                                                 <h5>Transportes</h5>
                                             </a>
                                             @php
@@ -122,7 +122,7 @@
                                 <div class="col-md-4 col-xl-4">
                                     <div class="card bg-c-pink order-card">
                                         <div class="card-block">
-                                            <a href="/estados_viaje" class="text-white">
+                                            <a href="/public/estados_viaje" class="text-white">
                                                 <h5>Estados de Viaje</h5>
                                             </a>
 
@@ -140,7 +140,7 @@
                                 <div class="col-md-4 col-xl-4">
                                     <div class="card bg-c-blue order-card">
                                         <div class="card-block">
-                                            <a href="/notificaciones" class="text-white">
+                                            <a href="/public/notificaciones" class="text-white">
                                                 <h5>Notificaciones</h5>
                                             </a>
                                             @php
@@ -157,7 +157,7 @@
                                 <div class="col-md-4 col-xl-4">
                                     <div class="card bg-c-green order-card">
                                         <div class="card-block">
-                                            <a href="/valoraciones" class="text-white">
+                                            <a href="/public/valoraciones" class="text-white">
                                                 <h5>Valoraciones</h5>
                                             </a>
                                             @php
@@ -174,7 +174,7 @@
                                 <div class="col-md-4 col-xl-4">
                                     <div class="card bg-c-pink order-card">
                                         <div class="card-block">
-                                            <a href="/albumes" class="text-white">
+                                            <a href="/public/albumes" class="text-white">
                                                 <h5>Albumes</h5>
                                             </a>
                                             @php
@@ -192,7 +192,7 @@
                                 <div class="col-md-4 col-xl-4">
                                     <div class="card bg-c-blue order-card">
                                         <div class="card-block">
-                                            <a href="/viajes" class="text-white">
+                                            <a href="/public/viajes" class="text-white">
                                                 <h5>Viajes</h5>
                                             </a>
                                             @php
@@ -210,7 +210,7 @@
                                 <div class="col-md-4 col-xl-4">
                                     <div class="card bg-c-green order-card">
                                         <div class="card-block">
-                                            <a href="/posts" class="text-white">
+                                            <a href="/public/posts" class="text-white">
                                                 <h5>Posts</h5>
                                             </a>
 
@@ -229,7 +229,7 @@
                                 <div class="col-md-4 col-xl-4">
                                     <div class="card bg-c-pink order-card">
                                         <div class="card-block">
-                                            <a href="/comentarios" class="text-white">
+                                            <a href="/public/comentarios" class="text-white">
                                                 <h5>Comentarios</h5>
                                             </a>
                                             @php
@@ -246,7 +246,7 @@
                                 <div class="col-md-4 col-xl-4">
                                     <div class="card bg-c-blue order-card">
                                         <div class="card-block">
-                                            <a href="/imagenes" class="text-white">
+                                            <a href="/public/imagenes" class="text-white">
                                                 <h5>Imagenes</h5>
                                             </a>
                                             @php
@@ -263,7 +263,7 @@
                                 <div class="col-md-4 col-xl-4">
                                     <div class="card bg-c-green order-card">
                                         <div class="card-block">
-                                            <a href="/amistades" class="text-white">
+                                            <a href="/public/amistades" class="text-white">
                                                 <h5>Amistades</h5>
                                             </a>
 

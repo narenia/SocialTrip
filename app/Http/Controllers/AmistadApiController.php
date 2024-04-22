@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\Auth;
 
 class AmistadApiController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:usuarios');
+    }
 
     public function solicitarAmistad(Request $request)
     {
@@ -88,7 +92,7 @@ class AmistadApiController extends Controller
     {
 
         $amistades = Amistades::all();
-        
+
         return response()->json(['amistades' => $amistades]);
     }
 }

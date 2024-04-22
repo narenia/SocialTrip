@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('usuarios', function (Blueprint $table) {
             $table->id();
             $table->string('email', 60)->unique();
-            $table->string('contrasenna', 20);
+            $table->string('contrasenna', 50);
             $table->smallInteger('tipo')->nullable()->default(null);
             $table->date('fecha_nacimiento')->nullable()->default(null);
             $table->string('nombre',25)->nullable()->default(null);
@@ -27,6 +27,7 @@ return new class extends Migration
             $table->unsignedBigInteger('ciudad_nacimiento')->nullable()->default(null);
             $table->foreign('ciudad_residencia')->references('id')->on('ciudades')->onDelete('cascade');
             $table->foreign('ciudad_nacimiento')->references('id')->on('ciudades')->onDelete('cascade');
+            $table->rememberToken();
             $table->timestamps();
         });
     }

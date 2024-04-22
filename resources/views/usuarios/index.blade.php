@@ -29,13 +29,13 @@
                                         <tr>
                                             <td style="display:none;">{{ $usuario->id }}</td>
                                             <td>{{ $usuario->nombre_usuario }}</td>
-                                            <td>{{ $usuario->nombre }}</td>
-                                            <td>{{ $usuario->apellidos }}</td>
+                                            <td>{{ $usuario->nombre ?: '' }}</td>
+                                            <td>{{ $usuario->apellidos ?: '' }}</td>
                                             <td>{{ $usuario->email }}</td>
-                                            <td>{{ $usuario->dni }}</td>
-                                            <td>{{ $usuario->ciudadResidencia->nombre }}</td>
-                                            <td>{{ $usuario->ciudadNacimiento->nombre }}</td>
-                                            <td>{{ $usuario->fecha_nacimiento }}</td>
+                                            <td>{{ $usuario->dni ?: '' }}</td>
+                                            <td>{{ $usuario->ciudadResidencia ? $usuario->ciudadResidencia->nombre : '' }}</td>
+                                            <td>{{ $usuario->ciudadNacimiento ? $usuario->ciudadNacimiento->nombre : '' }}</td>
+                                            <td>{{ $usuario->fecha_nacimiento ?: '' }}</td>
 
                                             <td>
                                                 <a class="btn btn-info"
@@ -53,12 +53,13 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                        </div class="pagination justify-content-end">
-                        {!! $usuarios->links() !!}
+                        </div>
+                        <div class="pagination justify-content-end">
+                            {!! $usuarios->links() !!}
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
         </div>
     </section>
 @endsection

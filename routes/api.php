@@ -56,10 +56,10 @@ Route::delete('/comentarios/{comentario}', [ComentarioApiController::class, 'bor
 Route::get('/comentarios', [ComentarioApiController::class, 'obtenerComentarios']);
 
 //ValoracionApiController
-Route::post('/valoraciones', [ValoracionApiController ::class, 'crearValoracion']);
+Route::post('/valoraciones', [ValoracionApiController::class, 'crearValoracion']);
 Route::put('/valoraciones/{valoracion}', [ValoracionApiController::class, 'editarValoracion']);
 Route::delete('/valoraciones/{valoracion}',  [ValoracionApiController::class, 'borrarValoracion']);
-Route::get('/valoraciones', [ValoracionApiController ::class, 'obtenerValoraciones']);
+Route::get('/valoraciones', [ValoracionApiController::class, 'obtenerValoraciones']);
 
 //UsuariosApiController
 Route::post('/usuarios/registrar', [UsuariosApiController::class, 'registrarUsuario']);
@@ -67,4 +67,4 @@ Route::put('/usuarios/{id}', [UsuariosApiController::class, 'editarUsuario']);
 Route::post('/usuarios/login', [UsuariosApiController::class, 'login']);
 Route::get('/usuarios', [UsuariosApiController::class, 'obtenerUsuarios']);
 Route::delete('/usuarios/{id}', [UsuariosApiController::class, 'eliminarUsuario']);
-
+Route::post('usuarios/logout', [UsuariosApiController::class, 'logout']);

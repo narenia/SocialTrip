@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class AlbumApiController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:usuarios');
+    }
+
     public function buscarAlbum(Request $request)
     {
         $terminoBusqueda = $request->input('termino');

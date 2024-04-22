@@ -5,15 +5,23 @@ namespace App\Http\Controllers;
 use App\Models\Usuarios;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class UsuariosApiController extends Controller
 {
+    public function __construct()
+    {
+        // Aplicar middleware de autenticación a todas las funciones excepto login y registrarUsuario
+        $this->middleware('auth:usuarios', ['except' => ['login', 'registrarUsuario']]);
+    }
+
     public function registrarUsuario(Request $request)
     {
         $request->validate([
             'email' => 'required|email|unique:usuarios,email',
-            'contrasenna' => 'required|string|min:6|max:20',
+            'contrasenna' => 'required|string|min:6|max:50',
             'nombre_usuario' => 'required|string|max:45|unique:usuarios,nombre_usuario',
             // Resto de campos permitidos como nulos
             'nombre' => 'nullable|string|max:25',
@@ -25,17 +33,14 @@ class UsuariosApiController extends Controller
             'ciudad_nacimiento' => 'nullable|exists:ciudades,id',
         ]);
 
-        // Obtener los datos de la solicitud
         $input = $request->all();
 
-        // Crear un nuevo array con los campos requeridos
         $usuarioData = [
             'email' => $input['email'],
-            'contrasenna' => $input['contrasenna'],
+            'contrasenna' => Hash::make($input['contrasenna']),
             'nombre_usuario' => $input['nombre_usuario'],
         ];
 
-        // Crear el usuario con los datos proporcionados
         $usuario = Usuarios::create($usuarioData);
         return response()->json(['message' => 'Usuario registrado correctamente', 'usuario' => $usuario], 201);
     }
@@ -47,7 +52,7 @@ class UsuariosApiController extends Controller
         $this->validate($request, [
             'nombre' => 'required|string|max:25',
             'email' => 'required|email|unique:usuarios,email,' . $id,
-            'contrasenna' => 'nullable|string|min:6|max:20|confirmed',
+            'contrasenna' => 'nullable|string|min:6|max:50|confirmed',
             'tipo' => 'nullable|integer',
             'fecha_nacimiento' => 'required|date',
             'apellidos' => 'required|string|max:60',
@@ -58,6 +63,7 @@ class UsuariosApiController extends Controller
         ]);
 
         $input = $request->all();
+
         if (!empty($input['contrasenna'])) {
             $input['contrasenna'] = Hash::make($input['contrasenna']);
         } else {
@@ -72,11 +78,11 @@ class UsuariosApiController extends Controller
 
     public function login(Request $request)
     {
-        $credentials = $request->only('nombre_usuario', 'contrasenna');
-
-        if (Auth::attempt($credentials)) {
-            $usuario = Auth::user();
-            return response()->json(['message' => 'Inicio de sesión exitoso', 'usuario' => $usuario], 200);
+        $credentials = $request->only('email', 'contrasenna');
+        $usuario = Usuarios::where('email', $credentials['email'])->first();
+        if ($usuario && password_verify($credentials['contrasenna'], $usuario->contrasenna)) {
+            Auth::login($usuario, $request->has('remember'));
+            return response()->json(['message' => 'Inicio de sesión exitoso', 'usuario' => Auth::user()], 200);
         } else {
             return response()->json(['message' => 'Credenciales inválidas'], 401);
         }
@@ -97,5 +103,12 @@ class UsuariosApiController extends Controller
 
         $usuario->delete();
         return response()->json(['message' => 'Usuario eliminado correctamente'], 200);
+    }
+
+
+    public function logout(Request $request)
+    {
+        Session::forget('usuario');
+        return response()->json(['message' => 'Sesión cerrada exitosamente'], 200);
     }
 }

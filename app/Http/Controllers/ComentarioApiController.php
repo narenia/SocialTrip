@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class ComentarioApiController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:usuarios');
+    }
 
     public function crearComentario(Request $request)
     {
