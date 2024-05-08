@@ -23,15 +23,17 @@
                                 </div>
                             @endif
 
-                            <form action="{{ route('imagenes.update', $imagen->id) }}" method="POST">
+                            <form action="{{ route('imagenes.update', $imagen->id) }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
+
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
-                                        <label for="ruta">Ruta</label>
-                                        <input type="text" name="ruta" class="form-control" value="{{$imagen->ruta}}" >
+                                        <label for="imagen">Imagen</label>
+                                        <input type="file" name="imagen" class="form-control-file">
                                     </div>
                                 </div>
+
 
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">

@@ -9,11 +9,6 @@ use Illuminate\Support\Facades\Auth;
 
 class AmistadApiController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth:usuarios');
-    }
-
     public function solicitarAmistad(Request $request)
     {
         $usuario1_id = Auth::id();
@@ -78,16 +73,7 @@ class AmistadApiController extends Controller
 
         return response()->json(['message' => 'Amistad eliminada correctamente']);
     }
-    public function buscarAmigo(Request $request)
-    {
-        $terminoBusqueda = $request->input('termino');
 
-        $amigos = Usuarios::where('nombre', 'like', "%$terminoBusqueda%")
-            ->orWhere('apellido', 'like', "%$terminoBusqueda%")
-            ->get();
-
-        return response()->json(['amigos' => $amigos]);
-    }
     public function obtenerAmistades()
     {
 

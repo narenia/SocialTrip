@@ -7,20 +7,19 @@ use Illuminate\Http\Request;
 
 class AlbumApiController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth:usuarios');
-    }
-
     public function buscarAlbum(Request $request)
     {
         $terminoBusqueda = $request->input('termino');
 
-        $albumes = Albumes::where('nombre', 'like', "%$terminoBusqueda%")
-            ->get();
+        $albumes = Albumes::where(function ($query) use ($terminoBusqueda) {
+            $query->where('id', 'like', "%$terminoBusqueda%")
+                ->orWhere('nombre', 'like', "%$terminoBusqueda%")
+                ->orWhere('usuario_id', 'like', "%$terminoBusqueda%");
+        })->get();
 
         return response()->json(['albumes' => $albumes]);
     }
+
 
     public function crearAlbum(Request $request)
     {

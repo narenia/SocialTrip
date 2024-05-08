@@ -11,11 +11,8 @@ use Illuminate\Support\Facades\Session;
 
 class UsuariosApiController extends Controller
 {
-    public function __construct()
-    {
-        // Aplicar middleware de autenticación a todas las funciones excepto login y registrarUsuario
-        $this->middleware('auth:usuarios', ['except' => ['login', 'registrarUsuario']]);
-    }
+
+    protected $guard = 'usuarios';
 
     public function registrarUsuario(Request $request)
     {
@@ -81,12 +78,13 @@ class UsuariosApiController extends Controller
         $credentials = $request->only('email', 'contrasenna');
         $usuario = Usuarios::where('email', $credentials['email'])->first();
         if ($usuario && password_verify($credentials['contrasenna'], $usuario->contrasenna)) {
-            Auth::login($usuario, $request->has('remember'));
-            return response()->json(['message' => 'Inicio de sesión exitoso', 'usuario' => Auth::user()], 200);
+            Auth::guard('usuarios')->login($usuario, $request->has('remember'));
+            return response()->json(['message' => 'Inicio de sesión exitoso', 'usuario' => Auth::guard('usuarios')->user()], 200);
         } else {
             return response()->json(['message' => 'Credenciales inválidas'], 401);
         }
     }
+
 
     public function obtenerUsuarios()
     {
@@ -103,6 +101,20 @@ class UsuariosApiController extends Controller
 
         $usuario->delete();
         return response()->json(['message' => 'Usuario eliminado correctamente'], 200);
+    }
+
+    public function buscarUsuario(Request $request)
+    {
+        $terminoBusqueda = $request->input('termino');
+
+        $usuarios = Usuarios::where(function ($query) use ($terminoBusqueda) {
+            $query->where('nombre', 'like', "%$terminoBusqueda%")
+                ->orWhere('apellidos', 'like', "%$terminoBusqueda%")
+                ->orWhere('nombre_usuario', 'like', "%$terminoBusqueda%")
+                ->orWhere('email', 'like', "%$terminoBusqueda%");
+        })->get();
+
+        return response()->json(['usuarios' => $usuarios]);
     }
 
 

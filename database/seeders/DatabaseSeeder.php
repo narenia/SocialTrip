@@ -27,6 +27,6 @@ class DatabaseSeeder extends Seeder
         $this->call(AlbumesSeeder::class);
         $this->call(ViajesSeeder::class);
         $this->call(PostsSeeder::class);
-        $this->call(ImagenesSeeder::class);
+        // $this->call(ImagenesSeeder::class);
     }
 }

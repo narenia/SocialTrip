@@ -7,11 +7,6 @@ use Illuminate\Http\Request;
 
 class ValoracionApiController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth:usuarios');
-    }
-
     public function crearValoracion(Request $request)
     {
         $request->validate([

@@ -7,10 +7,6 @@ use App\Models\Viajes;
 
 class ViajeApiController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth:usuarios');
-    }
 
     public function obtenerViajes()
     {
@@ -63,29 +59,25 @@ class ViajeApiController extends Controller
     }
     public function recomendarViaje(Request $request, $id)
     {
+        $request->validate([
+            'recomendar' => 'required|boolean',
+        ]);
+
         $viaje = Viajes::find($id);
 
         if (!$viaje) {
-            return response()->json(['message' => 'Viaje no encontrado']);
+            return response()->json(['message' => 'Viaje no encontrado'], 404);
         }
 
-        $viaje->update(['recomendado' => true]);
+        $recomendar = $request->input('recomendar');
 
-        return response()->json(['message' => 'Viaje recomendado con éxito']);
+        $viaje->update(['recomendado' => $recomendar]);
+
+        $message = $recomendar ? 'Viaje recomendado con éxito' : 'Viaje no recomendado';
+
+        return response()->json(['message' => $message]);
     }
 
-    public function noRecomendarViaje(Request $request, $id)
-    {
-        $viaje = Viajes::find($id);
-
-        if (!$viaje) {
-            return response()->json(['message' => 'Viaje no encontrado']);
-        }
-
-        $viaje->update(['recomendado' => false]);
-
-        return response()->json(['message' => 'Viaje marcado como no recomendado']);
-    }
 
     public function cambiarEstado(Request $request, $id)
     {
@@ -99,5 +91,5 @@ class ViajeApiController extends Controller
 
         return response()->json(['message' => 'Estado del viaje actualizado correctamente']);
     }
-
+    
 }

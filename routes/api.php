@@ -8,7 +8,7 @@ use App\Http\Controllers\AmistadApiController;
 use App\Http\Controllers\ComentarioApiController;
 use App\Http\Controllers\UsuariosApiController;
 use App\Http\Controllers\ValoracionApiController;
-
+use App\Models\Usuarios;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,16 +30,14 @@ Route::post('/viajes', [ViajeApiController::class, 'crearViaje']);
 Route::put('/viajes/{viaje}', [ViajeApiController::class, 'editarViaje']);
 Route::delete('/viajes/{viaje}', [ViajeApiController::class, 'eliminarViaje']);
 Route::get('/viajes', [ViajeApiController::class, 'obtenerViajes']);
-Route::put('/viajes/{id}/cambiar-estado', [ViajeApiController::class, 'cambiarEstado']);
-Route::put('/viajes/{id}/recomendar', [ViajeApiController::class, 'recomendarViaje']);
-Route::put('/viajes/{id}/no-recomendar', [ViajeApiController::class, 'noRecomendarViaje']);
+Route::patch('/viajes/{id}/estado', [ViajeApiController::class, 'cambiarEstado']);
+Route::patch('/viajes/{id}/recomendar', [ViajeApiController::class, 'recomendarViaje']);
 
 //AmistadApiController
 Route::post('/amistades/solicitar', [AmistadApiController::class, 'solicitarAmistad']);
 Route::put('/amistades/{id}/aceptar', [AmistadApiController::class, 'aceptarSolicitudAmistad']);
 Route::delete('/amistades/{id}/rechazar', [AmistadApiController::class, 'rechazarSolicitudAmistad']);
 Route::delete('/amistades/{id}', [AmistadApiController::class, 'borrarAmigo']);
-Route::get('/amistades/buscar', [AmistadApiController::class, 'buscarAmigo']);
 Route::get('/amistades', [AmistadApiController::class, 'obtenerAmistades']);
 
 //AlbumApiController
@@ -65,6 +63,8 @@ Route::get('/valoraciones', [ValoracionApiController::class, 'obtenerValoracione
 Route::post('/usuarios/registrar', [UsuariosApiController::class, 'registrarUsuario']);
 Route::put('/usuarios/{id}', [UsuariosApiController::class, 'editarUsuario']);
 Route::post('/usuarios/login', [UsuariosApiController::class, 'login']);
+Route::get('/usuarios', [UsuariosApiController::class, 'obtenerUsuarios']);
+Route::get('/usuarios/buscar', [UsuariosApiController::class, 'buscarUsuario']);
 Route::get('/usuarios', [UsuariosApiController::class, 'obtenerUsuarios']);
 Route::delete('/usuarios/{id}', [UsuariosApiController::class, 'eliminarUsuario']);
 Route::post('usuarios/logout', [UsuariosApiController::class, 'logout']);

@@ -51,8 +51,7 @@ class UsuariosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request)    {
         $this->validate($request, [
             'nombre' => 'required|string|max:25',
             'email' => 'required|email|unique:usuarios,email',
@@ -136,5 +135,5 @@ class UsuariosController extends Controller
         Usuarios::find($id)->delete();
         return redirect()->route('usuarios.index');
     }
-   
+
 }

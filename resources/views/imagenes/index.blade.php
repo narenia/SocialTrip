@@ -16,53 +16,51 @@
                             <table class="table table-striped mt-2">
                                 <thead style="background-color: #6777ef";>
                                     <th style="display: none;">ID</th>
+                                    <th style="color:#fff">Imagen</th>
                                     <th style="color:#fff">Ruta</th>
                                     <th style="color:#fff">Album</th>
                                     <th style="color:#fff">Post</th>
                                     <th style="color:#fff">Viaje</th>
-
-
                                 </thead>
                                 <tbody>
                                     @foreach ($imagenes as $imagen)
-                                        <tr>
+                                    <tr>
+                                        @isset($imagen->id)
                                             <td style="display:none;">{{ $imagen->id }}</td>
-                                            <td>{{ $imagen->ruta }}</td>
-                                            <td>{{ $imagen->albumId->nombre }}</td>
-                                            @if ($imagen->posts_id != null)
-                                                <td>{{ $imagen->postId->titulo }}</td>
-                                            @endif
-                                            @if ($imagen->posts_id == null)
-                                                <td>{{ '' }}</td>
-                                            @endif
-                                            @if ($imagen->viajes_id != null)
-                                                <td>{{ $imagen->viajeId->id }}</td>
-                                            @endif
-                                            @if ($imagen->viajes_id == null)
-                                                <td>{{ '' }}</td>
-                                            @endif
-
-
-                                            <td>
-                                                <form action="{{ route('imagenes.destroy', $imagen->id) }}" method="POST">
-                                                    @can('editar-imagen')
-                                                        <a class="btn btn-info"
-                                                            href="{{ route('imagenes.edit', $imagen->id) }}">Editar</a>
-                                                    @endcan
-
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    @can('borrar-imagen')
-                                                        <button type="submit" class="btn btn-danger">Borrar</button>
-                                                    @endcan
-                                                    @if ($errors->has('delete_error'))
-                                                        <div class="alert alert-danger">
-                                                            {{ $errors->first('delete_error') }}
-                                                        </div>
-                                                    @endif
-                                                </form>
-                                            </td>
-                                        </tr>
+                                        @endisset
+                                        <td>
+                                            <img src="{{ asset('images/' . $imagen->ruta) }}" alt="Imagen" width="100">
+                                        </td>
+                                        <td>{{ $imagen->ruta }}</td>
+                                        <td>{{ $imagen->albumId->nombre ?? '' }}</td>
+                                        @if ($imagen->posts_id != null)
+                                            <td>{{ $imagen->postId->titulo }}</td>
+                                        @else
+                                            <td>{{ '' }}</td>
+                                        @endif
+                                        @if ($imagen->viajes_id != null)
+                                            <td>{{ $imagen->viajeId->id }}</td>
+                                        @else
+                                            <td>{{ '' }}</td>
+                                        @endif
+                                        <td>
+                                            <form action="{{ route('imagenes.destroy', $imagen->id) }}" method="POST">
+                                                @can('editar-imagen')
+                                                    <a class="btn btn-info" href="{{ route('imagenes.edit', $imagen->id) }}">Editar</a>
+                                                @endcan
+                                                @csrf
+                                                @method('DELETE')
+                                                @can('borrar-imagen')
+                                                    <button type="submit" class="btn btn-danger">Borrar</button>
+                                                @endcan
+                                                @if ($errors->has('delete_error'))
+                                                    <div class="alert alert-danger">
+                                                        {{ $errors->first('delete_error') }}
+                                                    </div>
+                                                @endif
+                                            </form>
+                                        </td>
+                                    </tr>
                                     @endforeach
                                 </tbody>
                             </table>
